@@ -1,0 +1,2654 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#0f2e22">
+<meta name="description" content="上海卫道夫投资管理有限公司 - 专业的股权投后管理服务，守护股东权益，优化公司治理">
+<meta name="keywords" content="投资管理,股权投后管理,公司治理,风险管控,卫道夫">
+<title>上海卫道夫投资管理有限公司 | WALDORF</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Noto+Serif+SC:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #1a4435;
+    --forest-deep: #0f2e22;
+    --forest-mid: #256048;
+    --gold: #c8a84b;
+    --gold-light: #e0c06e;
+    --gold-pale: #f5e9c8;
+    --cream: #faf7f0;
+    --white: #ffffff;
+    --charcoal: #2a2a2a;
+    --gray: #6b7280;
+    --gray-light: #e5e7eb;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* ═══════════════════════════════════════════════════════════ */
+  /* ─── HTML5 OVERFLOW PREVENTION & ADAPTIVE DISPLAY ─── */
+  /* ═══════════════════════════════════════════════════════════ */
+
+  /* Enhanced box-sizing and overflow prevention */
+  * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  body {
+    width: 100%;
+    position: relative;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Ensure images and media never overflow */
+  img, video, iframe, embed, object {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Prevent SVG overflow */
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Prevent text overflow */
+  p, h1, h2, h3, h4, h5, h6, span, div {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+
+  /* Ensure all sections fit within viewport */
+  .hero, .vision, .services-bg, .risk,
+   .cases, .contact {
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  /* Ensure inner containers do not overflow */
+  .hero-content, .vision-inner, .services-inner,
+  .risk-inner, 
+  .cases-inner, .contact-inner {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Ensure buttons and inputs are properly sized */
+  button, input, select, textarea {
+    max-width: 100%;
+  }
+
+  /* Prevent iOS zoom on input focus */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    font-size: 21px;
+  }
+
+  /* Smooth scrolling for all browsers */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Ensure grid items do not overflow */
+  .services-grid, .dimensions-grid,
+  .cases-grid, .vision-pillars {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  html { 
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background: var(--forest-deep);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 60px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(15, 46, 34, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200, 168, 75, 0.2);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+  }
+
+  .nav-logo-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav-logo-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-logo-en {
+    font-family: Arial, sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    line-height: 1;
+    display: none;
+  }
+
+  .nav-logo-cn {
+    font-size: 21px;
+    font-weight: 500;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    line-height: 1.6;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 15px;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0; right: 0;
+    height: 1px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    background: #010d06;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  #heroCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  /* Gradient overlay for text readability */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(15, 46, 34, 0.35) 0%,
+      rgba(15, 46, 34, 0.45) 50%,
+      rgba(15, 46, 34, 0.50) 100%
+    );
+    z-index: 1;
+  }
+
+  .hero-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      rgba(15, 46, 34, 0.3) 70%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .hero-slogan {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    max-width: 900px;
+  }
+
+  .hero-slogan-line1,
+  .hero-slogan-line2 {
+    font-weight: 400;
+    color: var(--gold);
+    line-height: 1.6;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeInUp 1.2s ease-out forwards;
+    font-size: clamp(42px, 5.5vw, 82px);
+  }
+
+  .hero-slogan-line1 {
+    animation-delay: 0.6s;
+    margin-bottom: 20px;
+  }
+
+  .hero-slogan-line2 {
+    animation-delay: 0.9s;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero-left {}
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+    padding: 8px 20px;
+    border: 1px solid rgba(200, 168, 75, 0.3);
+    border-radius: 100px;
+  }
+
+  .hero-tag-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  .hero-tag-text {
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    font-family: Arial, sans-serif;
+  }
+
+  .hero-title {
+    font-family: Arial, sans-serif;
+    font-size: clamp(48px, 5vw, 72px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+    margin-bottom: 32px;
+  }
+
+  .hero-title-en {
+    font-family: Arial, sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    letter-spacing: 0.08em;
+    margin-bottom: 32px;
+    display: none;
+    font-style: italic;
+  }
+
+  .hero-tagline {
+    font-size: 17px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.2em;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .hero-tagline::before, .hero-tagline::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(200, 168, 75, 0.2);
+  }
+
+  .hero-motto {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .hero-motto-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-motto-item::before {
+    content: '';
+    width: 20px;
+    height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .hero-motto-item span {
+    font-size: 16px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.1em;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+  }
+
+  .btn-primary {
+    padding: 14px 36px;
+    background: var(--gold);
+    color: var(--forest-deep);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    transition: all 0.3s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(200, 168, 75, 0.3);
+  }
+
+  .btn-outline {
+    padding: 14px 36px;
+    border: 1px solid rgba(200, 168, 75, 0.4);
+    color: var(--gold);
+    font-size: 15px;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    font-family: Arial, sans-serif;
+    transition: all 0.3s;
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold);
+    background: rgba(200, 168, 75, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .hero-emblem {
+    width: 360px;
+    height: 360px;
+    position: relative;
+  }
+
+  .hero-emblem svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 0 40px rgba(200, 168, 75, 0.25));
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(200, 168, 75, 0.15);
+    border: 1px solid rgba(200, 168, 75, 0.15);
+    width: 100%;
+  }
+
+  .hero-stat {
+    padding: 24px;
+    background: rgba(15, 46, 34, 0.8);
+    text-align: center;
+  }
+
+  .hero-stat-num {
+    font-family: Arial, sans-serif;
+    font-size: 38px;
+    font-weight: 600;
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .hero-stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── SECTIONS ─── */
+  .section {
+    min-height: 100vh;
+    padding: 100px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 64px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  .section-num {
+    font-family: Arial, sans-serif;
+    font-size: 80px;
+    font-weight: 300;
+    color: rgba(26, 68, 53, 0.08);
+    line-height: 1;
+    font-style: italic;
+    position: absolute;
+    left: 60px;
+    top: -20px;
+  }
+
+  .section-label {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .section-title {
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--forest-deep);
+    line-height: 1.3;
+  }
+
+  .section-subtitle {
+    font-size: 16px;
+    color: var(--gray);
+    letter-spacing: 0.05em;
+    text-align: right;
+  }
+
+  /* ─── VISION ─── */
+  .vision {
+    background: var(--forest-deep);
+    min-height: 100vh;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .vision::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 80% 50%, rgba(200, 168, 75, 0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 80%, rgba(37, 96, 72, 0.3) 0%, transparent 50%);
+  }
+
+  .vision-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .vision-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .vision-left {
+    border-right: 1px solid rgba(200, 168, 75, 0.15);
+    padding-right: 80px;
+  }
+
+  .vision-mission-label {
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .vision-mission-title {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+
+  .vision-mission-desc {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    line-height: 2;
+  }
+
+  .vision-pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .vision-pillar {
+    padding: 32px;
+    border: 1px solid rgba(200, 168, 75, 0.12);
+    background: rgba(255,255,255,0.02);
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .vision-pillar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gold);
+    transform: scaleY(0);
+    transition: transform 0.4s;
+    transform-origin: bottom;
+  }
+
+  .vision-pillar:hover {
+    background: rgba(200, 168, 75, 0.05);
+    border-color: rgba(200, 168, 75, 0.25);
+    transform: translateY(-4px);
+  }
+
+  .vision-pillar:hover::before {
+    transform: scaleY(1);
+  }
+
+  .pillar-icon {
+    font-size: 34px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .pillar-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .pillar-desc {
+    font-size: 15px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.8;
+  }
+
+  /* ─── SERVICES ─── */
+  .services-bg {
+    background: var(--forest-deep);
+    min-height: 100vh;
+    padding: 100px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .services-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: var(--forest-deep);
+    border: 2px solid var(--forest-deep);
+    margin-top: 48px;
+  }
+
+  .service-card {
+    background: rgba(255,255,255,0.08);
+    padding: 40px 32px;
+    transition: all 0.4s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(200, 168, 75, 0.2);
+  }
+
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transform: scaleX(0);
+    transition: transform 0.4s;
+  }
+
+  .service-card:hover {
+    background: var(--forest-deep);
+  }
+
+  .service-card:hover::after { transform: scaleX(1); }
+
+  .service-card:hover .service-title,
+  .service-card:hover .service-en { color: var(--gold); }
+
+  .service-card:hover .service-items li { color: rgba(255,255,255,0.6); }
+
+  .service-num {
+    font-family: Arial, sans-serif;
+    font-size: 54px;
+    font-weight: 300;
+    color: rgba(26, 68, 53, 0.1);
+    line-height: 1;
+    margin-bottom: 16px;
+    display: block;
+    font-style: italic;
+    transition: color 0.4s;
+  }
+
+  .service-card:hover .service-num {
+    color: rgba(200, 168, 75, 0.15);
+  }
+
+  .service-en {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+    transition: color 0.4s;
+  }
+
+  .service-title {
+    font-size: 21px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 20px;
+    transition: color 0.4s;
+  }
+
+  .service-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .service-items li {
+    font-size: 14px;
+    color: rgba(255,255,255,0.7);
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.6;
+    transition: color 0.4s;
+  }
+
+  .service-items li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 10px;
+  }
+  /* ─── RISK ─── */
+  .risk {
+    background: var(--forest-deep);
+    min-height: 100vh;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .risk::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 60%, rgba(200, 168, 75, 0.04) 0%, transparent 60%);
+  }
+
+  .risk-inner {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .risk-header {
+    margin-bottom: 48px;
+  }
+
+  .risk-header .section-title { color: white; }
+
+  /* Risk Columns Layout */
+  .risk-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-top: 60px;
+  }
+
+  .risk-column {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(200, 168, 75, 0.2);
+    padding: 40px;
+    border-radius: 8px;
+    transition: all 0.4s;
+  }
+
+  .risk-column:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: var(--gold);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+
+  .risk-column-header {
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(200, 168, 75, 0.2);
+  }
+
+  .risk-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .risk-item {
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.03);
+    border-left: 3px solid var(--gold);
+    color: white;
+    font-size: 16px;
+    line-height: 1.6;
+    transition: all 0.3s;
+  }
+
+  .risk-item:hover {
+    background: rgba(255,255,255,0.08);
+    border-left-color: var(--gold-light);
+    transform: translateX(4px);
+  }
+
+  .risk-badge {
+    display: inline-block;
+    padding: 6px 18px;
+    font-size: 16px;
+    border-radius: 100px;
+    font-weight: 600;
+  }
+
+  .risk-badge.party-shareholder {
+    background: rgba(200, 168, 75, 0.15);
+    color: var(--gold);
+    border: 1px solid rgba(200, 168, 75, 0.3);
+  }
+
+  .risk-badge.party-company {
+    background: rgba(37, 96, 72, 0.3);
+    color: #7fcfab;
+    border: 1px solid rgba(37, 96, 72, 0.5);
+  }
+
+
+  /* ─── RETURNS MANAGEMENT ─── */
+  .returns {
+    background: var(--forest-deep);
+    min-height: 100vh;
+    padding: 100px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .returns-inner {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  /* Returns Strategy Grid */
+  .returns-strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-top: 60px;
+  }
+
+  .returns-strategy-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(200, 168, 75, 0.2);
+    padding: 44px;
+    border-radius: 8px;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .returns-strategy-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gold);
+    transform: scaleY(0);
+    transition: transform 0.4s;
+    transform-origin: bottom;
+  }
+
+  .returns-strategy-card:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: var(--gold);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+  }
+
+  .returns-strategy-card:hover::before {
+    transform: scaleY(1);
+  }
+
+  .strategy-marker {
+    font-size: 38px;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .strategy-content {
+    position: relative;
+  }
+
+  .strategy-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .strategy-label {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    color: rgba(200, 168, 75, 0.6);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: block;
+  }
+
+  .strategy-details {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .strategy-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgba(200, 168, 75, 0.1);
+  }
+
+  .strategy-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .item-label {
+    font-size: 15px;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.05em;
+  }
+
+  .item-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.05em;
+  }
+
+  /* Mobile Responsive for Returns */
+  @media (max-width: 768px) {
+    .returns-strategy-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .returns-strategy-card {
+      padding: 30px 20px;
+    }
+  }
+
+
+  .cases {
+    background: var(--forest-deep);
+    min-height: 100vh;
+    padding: 100px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .cases-inner {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  .cases-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+
+  .case-card {
+    border: 1px solid rgba(200, 168, 75, 0.2);
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 28px;
+    align-items: start;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .case-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(26, 68, 53, 0.02) 0%, transparent 60%);
+    transition: opacity 0.4s;
+    opacity: 0;
+  }
+
+  .case-card:hover {
+    border-color: var(--forest-mid);
+    box-shadow: 0 12px 40px rgba(26, 68, 53, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .case-card:hover::before { opacity: 1; }
+
+  .case-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(200, 168, 75, 0.2);
+    border: 2px solid var(--gold);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .case-content { position: relative; z-index: 1; }
+
+  .case-category {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  .case-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 12px;
+  }
+
+  .case-desc {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.8;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact {
+    background: var(--forest-deep);
+    min-height: 100vh;
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .contact::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 80% 20%, rgba(200, 168, 75, 0.08) 0%, transparent 50%),
+      linear-gradient(rgba(200, 168, 75, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200, 168, 75, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 60px 60px, 60px 60px;
+  }
+
+  .contact-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .contact-left {}
+
+  .contact-title {
+    font-size: 40px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.3;
+    margin-bottom: 24px;
+  }
+
+  .contact-en {
+    font-family: Arial, sans-serif;
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 300;
+    font-size: 50px;
+    line-height: 1;
+    display: block;
+    margin-bottom: 32px;
+  }
+
+  .contact-desc {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    line-height: 2;
+    margin-bottom: 40px;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .contact-item-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(200, 168, 75, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    flex-shrink: 0;
+  }
+
+  .contact-item-text {
+    font-size: 16px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .contact-item-label {
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 2px;
+  }
+
+  .contact-right {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(200, 168, 75, 0.12);
+    padding: 48px;
+  }
+
+  .contact-form-title {
+    font-size: 21px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 32px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 12px 16px;
+    color: white;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: rgba(200, 168, 75, 0.4);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 100px; }
+
+  .form-submit {
+    width: 100%;
+    padding: 14px;
+    background: var(--gold);
+    color: var(--forest-deep);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    border: none;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    transition: all 0.3s;
+  }
+
+  .form-submit:hover {
+    background: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(200, 168, 75, 0.3);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #070f0c;
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(200, 168, 75, 0.1);
+  }
+
+  .footer-brand {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+  }
+
+  .footer-motto {
+    font-size: 14px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.15em;
+    font-style: italic;
+    font-family: Arial, sans-serif;
+  }
+
+  .footer-copyright {
+    font-size: 11px;
+    color: rgba(255,255,255,0.2);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── SCROLL ANIMATIONS ─── */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── SECTION DIVIDER ─── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.2;
+    margin: 0;
+  }
+
+  /* ─── SCROLL SNAP FOR ALL SECTIONS ─── */
+  .hero,
+  .vision,
+  .services-bg,
+  .risk,
+  .returns,
+  .cases,
+  .contact {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  /* ─── GREEN THEME TEXT COLORS ─── */
+  .services-bg .section-title,
+  .services-bg .section-subtitle,
+  .returns .section-title,
+  .returns .section-subtitle,
+  .cases .section-title,
+  .cases .section-subtitle {
+    color: white;
+  }
+
+  /* Service cards on green background */
+  .service-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(200, 168, 75, 0.2);
+  }
+
+  .service-card:hover {
+    background: rgba(255,255,255,0.12);
+  }
+
+  .service-num {
+    color: rgba(200, 168, 75, 0.2);
+  }
+
+  .service-card:hover .service-num {
+    color: rgba(200, 168, 75, 0.3);
+  }
+
+  .service-title {
+    color: var(--gold);
+  }
+
+  .service-card:hover .service-title {
+    color: var(--gold-light);
+  }
+
+  .service-items li {
+    color: rgba(255,255,255,0.6);
+  }
+
+  .service-card:hover .service-items li {
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* Diligence cards on green background */
+  .dimension-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(200, 168, 75, 0.2);
+  }
+
+  .dimension-card:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(200, 168, 75, 0.4);
+  }
+
+  .dimension-card::before {
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  }
+
+  .dimension-cn {
+    color: var(--gold);
+  }
+
+  .aspect-name {
+    color: var(--gold-light);
+  }
+
+  .aspect-desc {
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* Case cards on green background */
+  .case-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(200, 168, 75, 0.2);
+  }
+
+  .case-card:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(200, 168, 75, 0.4);
+  }
+
+  .case-card::before {
+    background: linear-gradient(135deg, rgba(200, 168, 75, 0.08) 0%, transparent 60%);
+  }
+
+  .case-title {
+    color: var(--gold);
+  }
+
+  .case-desc {
+    color: rgba(255,255,255,0.6);
+  }
+
+  /* Additional text colors for green sections */
+
+  /* ═══════════════════════════════════════════════════════════ */
+  /* ─── MOBILE RESPONSIVE STYLES ─── */
+  /* ═══════════════════════════════════════════════════════════ */
+
+  /* Tablet and below (1024px) */
+  @media (max-width: 1024px) {
+    nav {
+      padding: 0 30px;
+    }
+
+    .hero-content,
+    .vision-grid,
+    .contact-inner {
+      gap: 40px;
+    }
+
+    .services-grid,
+    .dimensions-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    
+    .cases-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Mobile (768px and below) */
+  @media (max-width: 768px) {
+    nav {
+      height: 60px;
+      padding: 0 20px;
+    }
+
+    .nav-logo-icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .nav-logo-cn {
+      font-size: 15px;
+    }
+
+    .nav-links {
+      display: none;
+    }
+
+    /* Hero Section */
+    .hero-slogan-line1,
+    .hero-slogan-line2 {
+      font-size: clamp(34px, 6vw, 56px);
+    }
+
+    /* Vision */
+    .vision-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .vision-left {
+      border-right: none;
+      border-bottom: 1px solid rgba(200, 168, 75, 0.15);
+      padding-right: 0;
+      padding-bottom: 40px;
+    }
+
+    .vision-pillars {
+      grid-template-columns: 1fr;
+    }
+
+    /* Services */
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 2px;
+    }
+
+    /* Risk */
+    .risk-columns {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    /* Investment Types */
+    .invest-quadrant {
+      grid-template-columns: 1fr;
+    }
+
+    /* Cases */
+    .cases-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .case-card {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .case-icon {
+      width: 60px;
+      height: 60px;
+      font-size: 34px;
+    }
+
+    /* Contact */
+    .contact-inner {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    /* General */
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .section-subtitle {
+      text-align: left;
+    }
+
+    footer {
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+      padding: 30px 20px;
+    }
+  }
+
+  /* Small Mobile (480px and below) */
+  @media (max-width: 480px) {
+    .hero-content,
+    .vision-inner,
+    .services-inner,
+    .risk-inner,
+    
+    .team-inner,
+    .cases-inner,
+    .contact-inner {
+      padding: 0 20px;
+    }
+
+    .hero-slogan-line1,
+    .hero-slogan-line2 {
+      font-size: clamp(28px, 7vw, 42px);
+    }
+
+    .nav-logo-cn {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
+
+    .section-title {
+      font-size: 28px;
+    }
+
+    .vision-mission-title {
+      font-size: 22px;
+    }
+
+    .contact-title {
+      font-size: 34px;
+    }
+
+    .contact-en {
+      font-size: 42px;
+    }
+  }
+
+  /* Landscape mobile fix */
+  @media (max-height: 600px) and (orientation: landscape) {
+    .hero,
+    .vision,
+    .services-bg,
+    .risk,
+    
+    
+    .cases,
+    .contact {
+      min-height: auto;
+      padding: 60px 0;
+    }
+
+    nav {
+      height: 50px;
+    }
+  }
+
+  /* Touch device optimizations */
+  @media (hover: none) and (pointer: coarse) {
+    .service-card,
+    .dimension-card,
+    .invest-card,
+    .team-card,
+    .case-card {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .btn-primary:active,
+    .btn-outline:active {
+      transform: scale(0.98);
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 480 620">
+      <!-- Rounded Shield -->
+      <path d="
+        M95 105
+        Q240 85 385 105
+        V375
+        C385 460 240 525 240 525
+        C240 525 95 460 95 375
+        Z"
+        fill="#0F6F4A"
+        stroke="#C9B037"
+        stroke-width="6"/>
+      
+      <!-- WALDORF -->
+      <text x="240" y="162"
+            text-anchor="middle"
+            font-family="Trajan Pro, Cinzel, Times New Roman, serif"
+            font-size="36"
+            font-weight="700"
+            letter-spacing="4.8"
+            fill="#C9B037">
+        WALDORF
+      </text>
+      
+      <!-- Latin Motto -->
+      <text x="240" y="420"
+            text-anchor="middle"
+            font-family="Trajan Pro, Cinzel, Times New Roman, serif"
+            font-size="13.5"
+            letter-spacing="2.4"
+            fill="#C9B037">
+        ORDO • FIDES • TEMPUS
+      </text>
+      
+      <!-- Buildings -->
+      <rect x="212" y="185" width="56" height="160" fill="#C9B037"/>
+      <rect x="152" y="210" width="40" height="135" fill="#C9B037"/>
+      <rect x="288" y="210" width="40" height="135" fill="#C9B037"/>
+      
+      <!-- Chinese Motto -->
+      <text x="172" y="370" text-anchor="middle"
+            font-family="Noto Serif SC, Songti SC, serif"
+            font-size="12"
+            fill="#C9B037">
+        秩序
+      </text>
+      <text x="242" y="370" text-anchor="middle"
+            font-family="Noto Serif SC, Songti SC, serif"
+            font-size="12"
+            fill="#C9B037">
+        信仰
+      </text>
+      <text x="308" y="370" text-anchor="middle"
+            font-family="Noto Serif SC, Songti SC, serif"
+            font-size="12"
+            fill="#C9B037">
+        可持续
+      </text>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="nav-logo-en">WALDORF</span>
+      <span class="nav-logo-cn">上海卫道夫投资管理</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#vision">愿景使命</a></li>
+    <li><a href="#services">管理矩阵</a></li>
+    <li><a href="#risk">风险管理</a></li>
+    <li><a href="#returns">收益管理</a></li>
+    <li><a href="#cases">项目案例</a></li>
+    <li><a href="report-center.html" style="color: var(--gold); font-weight: 600;">报告专区</a></li>
+    <li><a href="#contact">联系我们</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-slogan">
+      <div class="hero-slogan-line1">聚焦投后管理</div>
+      <div class="hero-slogan-line2">成就伟大投资</div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+const canvas = document.getElementById('heroCanvas');
+const ctx = canvas.getContext('2d');
+
+let W, H, t = 0;
+const COLORS = {
+  bg: '#000502',
+  accent: '#c8a84b',     // 奢华金
+  accentBright: '#fff2cc',
+  glass: '#012b16',      // 幕墙深绿
+  windowWarm: '#e6cc80', // 室内暖光
+  windowCool: '#a0ffd0'  // 室内冷光
+};
+
+// 全球金融中心数据（含地标建筑）
+const cities = [
+  { name: "TOKYO", lon: 139, lat: 35, landmark: "tokyoTower" },
+  { name: "SHANGHAI", lon: 121, lat: 31, landmark: "orientalPearl" },
+  { name: "HONG KONG", lon: 114, lat: 22, landmark: "ifc" },
+  { name: "SINGAPORE", lon: 103, lat: 1, landmark: "marinaBay" },
+  { name: "DUBAI", lon: 55, lat: 25, landmark: "burjKhalifa" },
+  { name: "LONDON", lon: 0, lat: 51, landmark: "shard" },
+  { name: "FRANKFURT", lon: 8, lat: 50, landmark: "commerzbank" },
+  { name: "NEW YORK", lon: -74, lat: 40, landmark: "empireState" },
+  { name: "CHICAGO", lon: -87, lat: 41, landmark: "willis" },
+  { name: "LOS ANGELES", lon: -118, lat: 34, landmark: "usBank" }
+];
+
+// 地标建筑数字化图案生成器
+const landmarks = {
+  tokyoTower: (x, y, scale) => {
+    // 东京塔 - 铁塔造型
+    ctx.strokeStyle = COLORS.accent;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x - 15*scale, y + 60*scale);
+    ctx.moveTo(x, y);
+    ctx.lineTo(x + 15*scale, y + 60*scale);
+    ctx.moveTo(x - 15*scale, y + 60*scale);
+    ctx.lineTo(x + 15*scale, y + 60*scale);
+    // 横梁
+    for(let i=0; i<3; i++) {
+      const yy = y + (20 + i*15)*scale;
+      const w = 10 - i*3;
+      ctx.moveTo(x - w*scale, yy);
+      ctx.lineTo(x + w*scale, yy);
+    }
+    ctx.stroke();
+  },
+  orientalPearl: (x, y, scale) => {
+    // 东方明珠 - 三球塔
+    ctx.fillStyle = COLORS.accent;
+    ctx.strokeStyle = COLORS.accent;
+    ctx.lineWidth = 2;
+    // 主柱
+    ctx.fillRect(x - 2*scale, y, 4*scale, 60*scale);
+    // 三个球
+    ctx.beginPath();
+    ctx.arc(x, y + 15*scale, 8*scale, 0, Math.PI*2);
+    ctx.arc(x, y + 35*scale, 10*scale, 0, Math.PI*2);
+    ctx.arc(x, y + 55*scale, 6*scale, 0, Math.PI*2);
+    ctx.fill();
+  },
+  ifc: (x, y, scale) => {
+    // 香港IFC - 双塔
+    ctx.fillStyle = COLORS.accent;
+    ctx.fillRect(x - 10*scale, y + 20*scale, 8*scale, 40*scale);
+    ctx.fillRect(x + 2*scale, y, 8*scale, 60*scale);
+    // 窗户格栅
+    ctx.strokeStyle = COLORS.glass;
+    ctx.lineWidth = 0.5;
+    for(let yy=0; yy<60; yy+=4) {
+      ctx.beginPath();
+      ctx.moveTo(x + 2*scale, y + yy*scale);
+      ctx.lineTo(x + 10*scale, y + yy*scale);
+      ctx.stroke();
+    }
+  },
+  marinaBay: (x, y, scale) => {
+    // 滨海湾金沙 - 三塔一船
+    ctx.fillStyle = COLORS.accent;
+    ctx.fillRect(x - 12*scale, y + 15*scale, 6*scale, 45*scale);
+    ctx.fillRect(x - 2*scale, y + 15*scale, 6*scale, 45*scale);
+    ctx.fillRect(x + 8*scale, y + 15*scale, 6*scale, 45*scale);
+    // 顶部连接
+    ctx.fillRect(x - 14*scale, y + 10*scale, 30*scale, 6*scale);
+  },
+  burjKhalifa: (x, y, scale) => {
+    // 哈利法塔 - 尖塔
+    ctx.strokeStyle = COLORS.accent;
+    ctx.fillStyle = COLORS.accent;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x - 4*scale, y + 20*scale);
+    ctx.lineTo(x - 6*scale, y + 40*scale);
+    ctx.lineTo(x - 8*scale, y + 60*scale);
+    ctx.lineTo(x + 8*scale, y + 60*scale);
+    ctx.lineTo(x + 6*scale, y + 40*scale);
+    ctx.lineTo(x + 4*scale, y + 20*scale);
+    ctx.closePath();
+    ctx.fill();
+  },
+  shard: (x, y, scale) => {
+    // 伦敦碎片大厦 - 三角形
+    ctx.fillStyle = COLORS.accent;
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x - 12*scale, y + 60*scale);
+    ctx.lineTo(x + 12*scale, y + 60*scale);
+    ctx.closePath();
+    ctx.fill();
+    // 分割线
+    ctx.strokeStyle = COLORS.glass;
+    ctx.lineWidth = 1;
+    for(let i=1; i<4; i++) {
+      ctx.beginPath();
+      const yy = y + i*15*scale;
+      const w = 12 - i*3;
+      ctx.moveTo(x - w*scale, yy);
+      ctx.lineTo(x + w*scale, yy);
+      ctx.stroke();
+    }
+  },
+  commerzbank: (x, y, scale) => {
+    // 商业银行大厦 - 方形塔
+    ctx.fillStyle = COLORS.accent;
+    ctx.fillRect(x - 8*scale, y, 16*scale, 60*scale);
+    // V字切口
+    ctx.fillStyle = COLORS.bg;
+    ctx.beginPath();
+    ctx.moveTo(x - 6*scale, y + 20*scale);
+    ctx.lineTo(x, y + 30*scale);
+    ctx.lineTo(x + 6*scale, y + 20*scale);
+    ctx.lineTo(x + 6*scale, y + 60*scale);
+    ctx.lineTo(x - 6*scale, y + 60*scale);
+    ctx.closePath();
+    ctx.fill();
+  },
+  empireState: (x, y, scale) => {
+    // 帝国大厦 - 阶梯式
+    ctx.fillStyle = COLORS.accent;
+    ctx.fillRect(x - 10*scale, y + 40*scale, 20*scale, 20*scale);
+    ctx.fillRect(x - 7*scale, y + 20*scale, 14*scale, 20*scale);
+    ctx.fillRect(x - 4*scale, y, 8*scale, 20*scale);
+    // 尖顶
+    ctx.beginPath();
+    ctx.moveTo(x, y - 5*scale);
+    ctx.lineTo(x - 3*scale, y);
+    ctx.lineTo(x + 3*scale, y);
+    ctx.closePath();
+    ctx.fill();
+  },
+  willis: (x, y, scale) => {
+    // 威利斯大厦 - 双高塔
+    ctx.fillStyle = COLORS.accent;
+    ctx.fillRect(x - 12*scale, y + 10*scale, 10*scale, 50*scale);
+    ctx.fillRect(x + 2*scale, y, 10*scale, 60*scale);
+  },
+  usBank: (x, y, scale) => {
+    // 美国银行大厦 - 现代方塔
+    ctx.fillStyle = COLORS.accent;
+    ctx.fillRect(x - 8*scale, y, 16*scale, 60*scale);
+    // 顶部切角
+    ctx.fillStyle = COLORS.bg;
+    ctx.beginPath();
+    ctx.moveTo(x - 8*scale, y);
+    ctx.lineTo(x - 8*scale, y + 10*scale);
+    ctx.lineTo(x + 8*scale, y);
+    ctx.closePath();
+    ctx.fill();
+  }
+};
+
+let skyLine = [];
+let transition = 0;
+let targetTransition = 0;
+
+// 形态切换计时器 (球体/平面)
+setInterval(() => {
+  targetTransition = targetTransition === 0 ? 1 : 0;
+}, 8000);
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+  generateSkyline();
+}
+
+function generateSkyline() {
+  skyLine = [];
+  const count = 35;
+  const landmarkPositions = [3, 7, 11, 15, 19, 23, 27, 30, 32, 34]; // 10个地标位置
+  
+  for (let i = 0; i < count; i++) {
+    const isCenter = i > count * 0.35 && i < count * 0.65;
+    const landmarkIndex = landmarkPositions.indexOf(i);
+    
+    if (landmarkIndex >= 0 && landmarkIndex < cities.length) {
+      // 插入地标建筑
+      skyLine.push({
+        x: (W / (count - 1)) * i,
+        w: 60,
+        h: isCenter ? 400 : 200,
+        isLandmark: true,
+        landmark: cities[landmarkIndex].landmark,
+        cityName: cities[landmarkIndex].name,
+        currentH: 0,
+        seed: Math.random() * 100
+      });
+    } else {
+      // 普通建筑
+      skyLine.push({
+        x: (W / (count - 1)) * i,
+        w: 50 + Math.random() * 50,
+        h: isCenter ? (350 + Math.random() * 200) : (150 + Math.random() * 150),
+        sideW: 10 + Math.random() * 20,
+        windows: Array.from({length: 60}, () => Math.random() > 0.88),
+        type: Math.floor(Math.random() * 3),
+        currentH: 0,
+        seed: Math.random() * 100
+      });
+    }
+  }
+}
+
+window.addEventListener('resize', resize);
+resize();
+
+function getCoords(lon, lat, time) {
+  const radius = Math.min(W, H) * 0.26;
+  const rotation = time * 0.003; 
+  
+  // 3D坐标
+  const radLon = (lon * Math.PI / 180) + rotation;
+  const radLat = (lat * Math.PI / 180);
+  const x3d = W/2 + radius * Math.cos(radLat) * Math.sin(radLon);
+  const y3d = H/2 - radius * Math.sin(radLat) - 100;
+  const z3d = radius * Math.cos(radLat) * Math.cos(radLon);
+
+  // 2D坐标
+  const x2d = W/2 + (lon / 180) * (W * 0.45);
+  const y2d = H/2 - (lat / 90) * (H * 0.35) - 100;
+
+  return {
+    x: x3d + (x2d - x3d) * transition,
+    y: y3d + (y2d - y3d) * transition,
+    z: z3d,
+    alpha: (z3d + radius) / (radius * 2) // 深度透明度
+  };
+}
+
+function drawBuilding(b) {
+  if (b.currentH < b.h) b.currentH += 3;
+  const bh = b.currentH + Math.sin(t * 0.01 + b.seed) * 5;
+  const bx = b.x - b.w / 2;
+  const by = H;
+
+  ctx.save();
+  
+  // 如果是地标建筑，使用特殊绘制
+  if (b.isLandmark && landmarks[b.landmark]) {
+    // 绘制地标底座
+    const baseH = bh * 0.3;
+    const glassGrad = ctx.createLinearGradient(bx, by - baseH, bx, by);
+    glassGrad.addColorStop(0, '#012b16');
+    glassGrad.addColorStop(1, '#000502');
+    ctx.fillStyle = glassGrad;
+    ctx.fillRect(bx, by - baseH, b.w, baseH);
+    
+    // 绘制地标建筑图案
+    ctx.save();
+    ctx.globalAlpha = 0.8 + Math.sin(t * 0.02) * 0.2;
+    const scale = bh / 400; // 根据建筑高度缩放
+    landmarks[b.landmark](b.x, by - bh, scale);
+    ctx.restore();
+    
+    // 城市名称标签
+    ctx.font = 'bold 10px Arial';
+    ctx.fillStyle = COLORS.accent;
+    ctx.textAlign = 'center';
+    ctx.shadowBlur = 3;
+    ctx.shadowColor = '#000';
+    ctx.fillText(b.cityName, b.x, by - bh - 15);
+    ctx.shadowBlur = 0;
+    
+    ctx.restore();
+    return;
+  }
+  
+  // 普通建筑绘制（原有逻辑）
+  if (!b.sideW) b.sideW = 10;
+  if (!b.windows) b.windows = [];
+  
+  // 1. 建筑侧面 (厚度感)
+  ctx.fillStyle = '#000c05';
+  ctx.beginPath();
+  ctx.moveTo(bx + b.w, by);
+  ctx.lineTo(bx + b.w + b.sideW, by - 15);
+  ctx.lineTo(bx + b.w + b.sideW, by - bh - 15);
+  ctx.lineTo(bx + b.w, by - bh);
+  ctx.fill();
+
+  // 2. 建筑正面幕墙
+  const glassGrad = ctx.createLinearGradient(bx, by - bh, bx, by);
+  glassGrad.addColorStop(0, '#012b16');
+  glassGrad.addColorStop(1, '#000502');
+  ctx.fillStyle = glassGrad;
+  ctx.fillRect(bx, by - bh, b.w, bh);
+
+  // 3. 玻璃窗格格栅
+  ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+  ctx.lineWidth = 0.5;
+  const rStep = 14, cStep = 10;
+  ctx.beginPath();
+  for(let y=0; y<bh; y+=rStep) { ctx.moveTo(bx, by-y); ctx.lineTo(bx+b.w, by-y); }
+  for(let x=0; x<b.w; x+=cStep) { ctx.moveTo(bx+x, by-bh); ctx.lineTo(bx+x, by); }
+  ctx.stroke();
+
+  // 4. 写实灯光层
+  b.windows.forEach((on, i) => {
+    if(on && Math.sin(t*0.01 + i + b.seed) > -0.5) {
+      const r = Math.floor(i / 6);
+      const c = i % 6;
+      ctx.fillStyle = i % 2 === 0 ? COLORS.windowWarm : COLORS.windowCool;
+      ctx.globalAlpha = 0.4 + Math.sin(t*0.03 + i)*0.3;
+      ctx.fillRect(bx + c*(b.w/6)+2, by - bh + r*rStep + 4, cStep-4, 4);
+    }
+  });
+
+  // 5. 凸显轮廓线
+  ctx.strokeStyle = COLORS.accent;
+  ctx.globalAlpha = 0.3;
+  ctx.lineWidth = 1;
+  ctx.strokeRect(bx, by - bh, b.w, bh);
+  
+  // 顶部发光边缘
+  ctx.globalAlpha = 0.6;
+  ctx.beginPath();
+  ctx.moveTo(bx, by - bh); ctx.lineTo(bx + b.w, by - bh);
+  ctx.stroke();
+
+  // 顶部航标灯 (写实红光)
+  if(Math.floor(t/40) % 2 === 0) {
+    ctx.fillStyle = '#ff3333';
+    ctx.shadowBlur = 10; ctx.shadowColor = '#ff0000';
+    ctx.beginPath(); ctx.arc(bx + b.w/2, by - bh - 4, 2, 0, Math.PI*2); ctx.fill();
+    ctx.shadowBlur = 0;
+  }
+  ctx.restore();
+}
+
+function render() {
+  // 背景径向渐变
+  const bgGrad = ctx.createRadialGradient(W/2, H/2, 0, W/2, H/2, W);
+  bgGrad.addColorStop(0, '#021a0d');
+  bgGrad.addColorStop(1, '#000502');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, W, H);
+
+  transition += (targetTransition - transition) * 0.04;
+  t++;
+
+  // 绘制CBD建筑群
+  skyLine.forEach(drawBuilding);
+
+  // 1. 金融动脉连线
+  ctx.save();
+  for(let i=0; i<cities.length; i++) {
+    for(let j=i+1; j<cities.length; j++) {
+      const p1 = getCoords(cities[i].lon, cities[i].lat, t);
+      const p2 = getCoords(cities[j].lon, cities[j].lat, t);
+      
+      // 3D模式背面剔除
+      if (transition > 0.5 || (p1.z > -60 && p2.z > -60)) {
+        const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
+        const opacity = (transition > 0.5 ? 0.15 : p1.alpha * 0.25) * (1 - dist/(W*0.6));
+        
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        ctx.strokeStyle = `rgba(200, 168, 75, ${opacity})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+
+        // 动态脉冲 (金色流光)
+        const pt = (t * 0.008 + i) % 1;
+        const px = p1.x + (p2.x - p1.x) * pt;
+        const py = p1.y + (p2.y - p1.y) * pt;
+        ctx.fillStyle = COLORS.accent;
+        ctx.shadowBlur = 12; ctx.shadowColor = COLORS.accent;
+        ctx.beginPath(); ctx.arc(px, py, 2.5, 0, Math.PI*2); ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+    }
+  }
+  ctx.restore();
+
+  // 2. 核心城市节点（按z坐标排序，后面的先画）
+  const sortedCities = cities.map((city, i) => ({
+    city, 
+    i, 
+    pos: getCoords(city.lon, city.lat, t)
+  })).sort((a, b) => a.pos.z - b.pos.z);
+
+  sortedCities.forEach(({city, i, pos}) => {
+    // 在3D和2D模式下都显示，但3D模式下背面剔除
+    if (transition > 0.5 || pos.z > -120) {
+      ctx.save();
+      
+      // 深度透明度和大小
+      const depthAlpha = transition > 0.5 ? 1 : Math.max(0.3, pos.alpha);
+      const depthScale = transition > 0.5 ? 1 : (0.6 + pos.alpha * 0.4);
+      
+      ctx.globalAlpha = depthAlpha;
+      
+      // 节点圆心
+      ctx.fillStyle = COLORS.accent;
+      const nodeSize = 4 * depthScale;
+      ctx.beginPath(); 
+      ctx.arc(pos.x, pos.y, nodeSize, 0, Math.PI*2); 
+      ctx.fill();
+      
+      // 呼吸扩散环
+      const r = (8 + Math.sin(t*0.06 + i)*6) * depthScale;
+      ctx.strokeStyle = COLORS.accent;
+      ctx.lineWidth = 1;
+      ctx.beginPath(); 
+      ctx.arc(pos.x, pos.y, r, 0, Math.PI*2); 
+      ctx.stroke();
+      
+      // 城市标签（3D模式下也显示，根据深度调整）
+      const fontSize = transition > 0.5 ? 11 : Math.max(8, 11 * depthScale);
+      const labelOffset = transition > 0.5 ? 15 : 12;
+      
+      ctx.fillStyle = transition > 0.5 ? "#fff" : COLORS.accentBright;
+      ctx.font = `bold ${fontSize}px Arial`;
+      ctx.shadowBlur = 4; 
+      ctx.shadowColor = "#000";
+      ctx.textAlign = 'left';
+      
+      // 根据位置智能调整标签位置避免重叠
+      let offsetX = labelOffset;
+      let offsetY = 5;
+      
+      // 在3D模式下，根据x位置调整标签方向
+      if (transition < 0.5) {
+        if (pos.x > W * 0.6) {
+          ctx.textAlign = 'right';
+          offsetX = -labelOffset;
+        }
+        // 上半部分的标签放在下面
+        if (pos.y < H * 0.4) {
+          offsetY = fontSize + 8;
+        }
+      }
+      
+      ctx.fillText(city.name, pos.x + offsetX, pos.y + offsetY);
+      ctx.shadowBlur = 0;
+      
+      ctx.restore();
+    }
+  });
+
+  requestAnimationFrame(render);
+}
+
+render();
+})();
+</script>
+
+
+<!-- VISION -->
+<section class="vision" id="vision">
+  <div class="vision-inner">
+    <div class="vision-grid">
+      <div class="vision-left">
+        <span class="vision-mission-label">— VISION & MISSION</span>
+        <div class="vision-mission-title">守护股东权益<br>优化公司治理</div>
+        <p class="vision-mission-desc">
+          卫道夫坚持以科学治理为核心，以科技赋能为手段，通过系统化的投后管理服务，帮助投资方守护每一分资产安全，实现每一笔投资的最大化回报。
+        </p>
+      </div>
+      <div class="vision-pillars fade-in">
+        <div class="vision-pillar">
+          <span class="pillar-icon">📊</span>
+          <div class="pillar-title">风险管理</div>
+          <p class="pillar-desc">系统化风险监测与预警，构建投资安全防护网，规避重大风险敞口。</p>
+        </div>
+        <div class="vision-pillar">
+          <span class="pillar-icon">🎯</span>
+          <div class="pillar-title">科学决策</div>
+          <p class="pillar-desc">数据驱动的决策支持体系，从全局视角提供客观中立的专业建言。</p>
+        </div>
+        <div class="vision-pillar">
+          <span class="pillar-icon">🏛️</span>
+          <div class="pillar-title">规范治理</div>
+          <p class="pillar-desc">完善公司治理架构，建立健全内控机制，确保经营合规透明。</p>
+        </div>
+        <div class="vision-pillar">
+          <span class="pillar-icon">📈</span>
+          <div class="pillar-title">资本市场</div>
+          <p class="pillar-desc">对接资本市场资源，赋能企业价值提升，助力实现多元退出。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- SERVICES -->
+<section class="services-bg" id="services">
+  <div class="services-inner">
+    <div class="section-header">
+      <div>
+        <span class="section-label">CORE SERVICES</span>
+        <div class="section-title">主营业务 · 股权投后管理</div>
+      </div>
+      <div class="section-subtitle">全周期系统管理 · 结果导向 · 节点检查</div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <span class="service-num">01</span>
+        <span class="service-en">REGULAR MANAGEMENT</span>
+        <div class="service-title">常规管理</div>
+        <ul class="service-items">
+          <li>综合监测与财务查析</li>
+          <li>合同审查与走访座谈</li>
+          <li>风险排查与报告汇报</li>
+          <li>以月度为基本周期，夯实管理密度</li>
+        </ul>
+      </div>
+      <div class="service-card fade-in">
+        <span class="service-num">02</span>
+        <span class="service-en">RISK CONTROL</span>
+        <div class="service-title">风险管控</div>
+        <ul class="service-items">
+          <li>关联交易利益输送监控</li>
+          <li>虚假财务陈述识别</li>
+          <li>职务侵占与经营异常预警</li>
+          <li>风险监测预警反馈优化体系</li>
+        </ul>
+      </div>
+      <div class="service-card fade-in">
+        <span class="service-num">03</span>
+        <span class="service-en">DECISION ADVISORY</span>
+        <div class="service-title">决策建议</div>
+        <ul class="service-items">
+          <li>重大事项决议程序咨询</li>
+          <li>投融资可行性与价值分析</li>
+          <li>人事适格性分析评价</li>
+          <li>科学建言建策，客观中立</li>
+        </ul>
+      </div>
+      <div class="service-card fade-in">
+        <span class="service-num">04</span>
+        <span class="service-en">ENABLING SERVICES</span>
+        <div class="service-title">赋能服务</div>
+        <ul class="service-items">
+          <li>产业链供应链资源整合</li>
+          <li>OA与科技应用建设</li>
+          <li>人工智能技术赋能降本增效</li>
+          <li>收并购与多元结构融资</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- DUE DILIGENCE -->
+
+<!-- RISK -->
+<section class="risk" id="risk">
+  <div class="risk-inner">
+    <div class="risk-header fade-in">
+      <span class="section-label" style="color:var(--gold); font-family:Arial,sans-serif; font-size: 14px; letter-spacing:0.2em; text-transform:uppercase; display:block; margin-bottom:8px;">RISK MANAGEMENT</span>
+      <div class="section-title" style="color:white; font-size: 38px; font-weight:700;">风险管控 · 监测预警体系</div>
+    </div>
+    
+    <div class="risk-columns fade-in">
+      <!-- Shareholder Risks -->
+      <div class="risk-column">
+        <div class="risk-column-header">
+          <span class="risk-badge party-shareholder">股东</span>
+        </div>
+        <div class="risk-items">
+          <div class="risk-item">关联交易进行利益输送</div>
+          <div class="risk-item">债务和法律责任连带</div>
+          <div class="risk-item">虚假财务陈述</div>
+          <div class="risk-item">侵犯股东知情权</div>
+        </div>
+      </div>
+
+      <!-- Company Risks -->
+      <div class="risk-column">
+        <div class="risk-column-header">
+          <span class="risk-badge party-company">公司</span>
+        </div>
+        <div class="risk-items">
+          <div class="risk-item">管理层和员工职务侵占</div>
+          <div class="risk-item">经营指标参数异常</div>
+          <div class="risk-item">竞争威胁和竞业禁止</div>
+          <div class="risk-item">财务和税务风险触发</div>
+          <div class="risk-item">核心和关键人事异动</div>
+          <div class="risk-item">法律政策和行政负面</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- RETURNS MANAGEMENT -->
+<section class="returns" id="returns">
+  <div class="returns-inner">
+    <div class="section-header fade-in">
+      <div>
+        <span class="section-label">RETURNS MANAGEMENT</span>
+        <div class="section-title">收益管理 · 做实公司价值 做强资本回报</div>
+      </div>
+      <div class="section-subtitle">根据定位导向分类实施管理计划和退出策略</div>
+    </div>
+    
+    <!-- Returns Strategy Cards -->
+    <div class="returns-strategy-grid fade-in">
+      <div class="returns-strategy-card">
+        <div class="strategy-marker strategic-marker">■</div>
+        <div class="strategy-content">
+          <h3 class="strategy-title">战略投资</h3>
+          <div class="strategy-label">STRATEGIC INVESTMENT</div>
+          <div class="strategy-details">
+            <div class="strategy-item">
+              <span class="item-label">定位导向</span>
+              <span class="item-value">未来前瞻</span>
+            </div>
+            <div class="strategy-item">
+              <span class="item-label">管理计划</span>
+              <span class="item-value">长期主义</span>
+            </div>
+            <div class="strategy-item">
+              <span class="item-label">退出策略</span>
+              <span class="item-value">资本市场</span>
+            </div>
+            <div class="strategy-item">
+              <span class="item-label">收益特征</span>
+              <span class="item-value">高预期回报 · 长期持有</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="returns-strategy-card">
+        <div class="strategy-marker industrial-marker">●</div>
+        <div class="strategy-content">
+          <h3 class="strategy-title">产业投资</h3>
+          <div class="strategy-label">INDUSTRIAL INVESTMENT</div>
+          <div class="strategy-details">
+            <div class="strategy-item">
+              <span class="item-label">定位导向</span>
+              <span class="item-value">产业赋能</span>
+            </div>
+            <div class="strategy-item">
+              <span class="item-label">管理计划</span>
+              <span class="item-value">融合发展</span>
+            </div>
+            <div class="strategy-item">
+              <span class="item-label">退出策略</span>
+              <span class="item-value">并购整合</span>
+            </div>
+            <div class="strategy-item">
+              <span class="item-label">收益特征</span>
+              <span class="item-value">中高回报 · 中期持有</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="returns-strategy-card">
+        <div class="strategy-marker financial-marker">◆</div>
+        <div class="strategy-content">
+          <h3 class="strategy-title">财务投资</h3>
+          <div class="strategy-label">FINANCIAL INVESTMENT</div>
+          <div class="strategy-details">
+            <div class="strategy-item">
+              <span class="item-label">定位导向</span>
+              <span class="item-value">增值变现</span>
+            </div>
+            <div class="strategy-item">
+              <span class="item-label">管理计划</span>
+              <span class="item-value">现金利润</span>
+            </div>
+            <div class="strategy-item">
+              <span class="item-label">退出策略</span>
+              <span class="item-value">股东分红</span>
+            </div>
+            <div class="strategy-item">
+              <span class="item-label">收益特征</span>
+              <span class="item-value">稳定回报 · 短期持有</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="returns-strategy-card">
+        <div class="strategy-marker institutional-marker">▲</div>
+        <div class="strategy-content">
+          <h3 class="strategy-title">机构投资</h3>
+          <div class="strategy-label">INSTITUTIONAL INVESTMENT</div>
+          <div class="strategy-details">
+            <div class="strategy-item">
+              <span class="item-label">定位导向</span>
+              <span class="item-value">资产管理</span>
+            </div>
+            <div class="strategy-item">
+              <span class="item-label">管理计划</span>
+              <span class="item-value">超额收益</span>
+            </div>
+            <div class="strategy-item">
+              <span class="item-label">退出策略</span>
+              <span class="item-value">资本运作</span>
+            </div>
+            <div class="strategy-item">
+              <span class="item-label">收益特征</span>
+              <span class="item-value">绝对收益 · 灵活配置</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- RETURNS MANAGEMENT -->
+
+
+
+<!-- TEAM -->
+
+<!-- CASES -->
+<section class="cases" id="cases">
+  <div class="cases-inner">
+    <div class="section-header">
+      <div>
+        <span class="section-label">PROJECT CASES</span>
+        <div class="section-title">项目案例 · 跨行业投后管理经验</div>
+      </div>
+      <div class="section-subtitle">多元综合管理 · 胜任风险处置</div>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card fade-in">
+        <div class="case-icon">🚛</div>
+        <div class="case-content">
+          <span class="case-category">LOGISTICS · EQUITY BUYBACK</span>
+          <div class="case-title">物流运输 · 股权回购退出</div>
+          <p class="case-desc">规范公司会计政策和财务管理秩序，规避重大投资风险，成功行使回购权完成退出。通过系统性财务梳理，为投资方挽回了全部本金并实现合理收益。</p>
+        </div>
+      </div>
+      <div class="case-card fade-in">
+        <div class="case-icon">🏭</div>
+        <div class="case-content">
+          <span class="case-category">COLD CHAIN · M&A CLOSING</span>
+          <div class="case-title">冷链仓储 · 产业投资交割</div>
+          <p class="case-desc">尽职调查和设置交易结构及关键交易条款，为公司的重大投资推进建立防火墙。专业的条款设计有效保护了投资方的核心利益。</p>
+        </div>
+      </div>
+      <div class="case-card fade-in">
+        <div class="case-icon">🏢</div>
+        <div class="case-content">
+          <span class="case-category">REAL ESTATE · RISK RESOLUTION</span>
+          <div class="case-title">商业地产 · 重大风险处置</div>
+          <p class="case-desc">解决股东因公司债务连带担保产生的重大债务风险，规范公司治理结构和管理机制。帮助股东从潜在的重大连带责任中成功脱身。</p>
+        </div>
+      </div>
+      <div class="case-card fade-in">
+        <div class="case-icon">🌐</div>
+        <div class="case-content">
+          <span class="case-category">INTERNATIONAL TRADE · PROCESS</span>
+          <div class="case-title">国际贸易 · 组织流程建设</div>
+          <p class="case-desc">混合所有制公司的规划设立和经营计划及策略制定，构建全线管理自动化。通过引入OA系统和AI技术，实现了管理效能的大幅提升。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="contact-title">开启合作</div>
+      <span class="contact-en">Let's Connect</span>
+      <p class="contact-desc">
+        无论您是机构投资者、产业资本还是个人投资者，卫道夫都愿以专业的投后管理服务，助力您守护和增值每一笔宝贵的股权投资。
+      </p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-item-icon">🌐</div>
+          <div>
+            <div class="contact-item-label">官方网站</div>
+            <div class="contact-item-text">www.waldorf.work</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div>
+            <div class="contact-item-label">公司地址</div>
+            <div class="contact-item-text">中国 · 上海</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📧</div>
+          <div>
+            <div class="contact-item-label">商务合作</div>
+            <div class="contact-item-text"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8be8e4e5ffeae8ffcbfceae7efe4f9eda5fce4f9e0">[email&#160;protected]</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-right fade-in">
+      <div class="contact-form-title">发送咨询</div>
+      <div class="form-group">
+        <label>您的姓名</label>
+        <input type="text" placeholder="请输入姓名">
+      </div>
+      <div class="form-group">
+        <label>联系电话</label>
+        <input type="tel" placeholder="请输入联系电话">
+      </div>
+      <div class="form-group">
+        <label>公司名称</label>
+        <input type="text" placeholder="请输入公司名称">
+      </div>
+      <div class="form-group">
+        <label>咨询内容</label>
+        <textarea placeholder="请简述您的投资管理需求…"></textarea>
+      </div>
+      <button class="form-submit">发送咨询 →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">WALDORF</div>
+  <div class="footer-motto">Ordo · Fides · Tempus</div>
+  <div class="footer-copyright">© 2024 上海卫道夫投资管理有限公司 · 管理向善 科技赋能 治理创造价值</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Full-page scroll snap enabled - each scroll will snap to the next section
+
+  // Smooth scroll for navigation links with scroll snap
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    });
+  });
+
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Stagger children
+  document.querySelectorAll('.services-grid, .dimensions-grid, .cases-grid, .vision-pillars').forEach(grid => {
+    grid.querySelectorAll('.fade-in').forEach((el, i) => {
+      el.style.transitionDelay = `${i * 0.1}s`;
+    });
+  });
+
+  // Nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+      nav.style.height = '60px';
+    } else {
+      nav.style.height = '70px';
+    }
+  });
+
+  // Form submit
+  document.querySelector('.form-submit').addEventListener('click', function() {
+    this.textContent = '✓ 已发送，我们将尽快联系您';
+    this.style.background = '#256048';
+    this.style.color = 'white';
+    setTimeout(() => {
+      this.textContent = '发送咨询 →';
+      this.style.background = '';
+      this.style.color = '';
+    }, 3000);
+  });
+</script>
+</body>
+</html>

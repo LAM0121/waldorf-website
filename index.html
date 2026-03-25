@@ -9,6 +9,8 @@
 
 <!-- ─── 核心 SEO ─── -->
 <title>上海卫道夫投资管理有限公司 | WALDORF | 股权投后管理专家</title>
+<!-- EmailJS SDK — 必须在其他脚本之前加载 -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <meta name="description" content="上海卫道夫投资管理有限公司（WALDORF）专注股权投后管理服务，提供常规管理、风险管控、决策建议与赋能服务，守护股东权益，优化公司治理，助力投资增值。">
 <meta name="keywords" content="卫道夫,Waldorf,上海卫道夫,上海卫道夫投资管理,上海卫道夫投资管理有限公司,股权投后管理,投后管理,投资管理,股权管理,公司治理,风险管控,股东权益,私募股权,PE投后,上海投资管理">
 <meta name="author" content="上海卫道夫投资管理有限公司">
@@ -2866,15 +2868,13 @@ render();
   //      收件人 To Email 填写 lam.g.zoeng@waldorf.work → 复制 Template ID
   //   4. Account → Public Key → 复制
   //   5. 将下方三个占位符替换为你的真实值，保存即可
+  // EmailJS 配置
   const EMAILJS_PUBLIC_KEY  = '2KuvA8DZVEk6sk3Vf';
   const EMAILJS_SERVICE_ID  = '200OK';
   const EMAILJS_TEMPLATE_ID = 'template_ixvnco5';
 
-  (function() {
-    if (typeof emailjs !== 'undefined') {
-      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-    }
-  })();
+  // SDK 已在 <head> 中提前加载，此处直接初始化
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
@@ -2897,28 +2897,14 @@ render();
       btn.style.opacity = '0.7';
       document.getElementById('formError').style.display = 'none';
 
-      // 如果 EmailJS 未配置，降级为 mailto
-      if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY' || typeof emailjs === 'undefined') {
-        const subj = encodeURIComponent('【卫道夫官网咨询】' + name + (company ? ' · ' + company : ''));
-        const body = encodeURIComponent(
-          '姓名：' + name + '\n电话：' + tel +
-          (company ? '\n公司：' + company : '') +
-          '\n\n咨询内容：\n' + (message || '（未填写）')
-        );
-        window.open('mailto:lam.g.zoeng@waldorf.work?subject=' + subj + '&body=' + body);
-        contactForm.style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-        return;
-      }
-
       try {
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        const result = await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
           from_name:    name,
           from_tel:     tel,
           from_company: company || '未填写',
           message:      message || '（未填写）',
-          reply_to:     '',
         });
+        console.log('EmailJS OK:', result.status, result.text);
         contactForm.style.display = 'none';
         document.getElementById('formSuccess').style.display = 'block';
       } catch (err) {
@@ -2926,12 +2912,13 @@ render();
         btn.textContent = '发送 →';
         btn.disabled = false;
         btn.style.opacity = '';
-        document.getElementById('formError').style.display = 'block';
+        const errEl = document.getElementById('formError');
+        const reason = (err && err.text) ? err.text : (err && err.message ? err.message : JSON.stringify(err));
+        errEl.innerHTML = '发送失败：' + reason + '<br>请直接发邮件至 <a href="mailto:lam.g.zoeng@waldorf.work" style="color:#c8a84b;">lam.g.zoeng@waldorf.work</a>';
+        errEl.style.display = 'block';
       }
     });
   }
 </script>
-<!-- EmailJS SDK -->
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </body>
 </html>

@@ -2731,32 +2731,22 @@ render();
     </div>
     <div class="contact-right fade-in">
       <div class="contact-form-title">联系我们</div>
-      <form
-        action="https://formsubmit.co/lam.g.zoeng@waldorf.work"
-        method="POST"
-        id="contactForm"
-      >
-        <!-- FormSubmit 配置 -->
-        <input type="hidden" name="_subject" value="【卫道夫官网咨询】新咨询消息">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="box">
-        <input type="hidden" name="_next" value="">
-
+      <form id="contactForm" novalidate>
         <div class="form-group">
           <label>您的姓名 <span style="color:#c8a84b;">*</span></label>
-          <input type="text" name="姓名" placeholder="请输入姓名" required>
+          <input type="text" id="field_name" placeholder="请输入姓名" required>
         </div>
         <div class="form-group">
           <label>联系电话 <span style="color:#c8a84b;">*</span></label>
-          <input type="tel" name="联系电话" placeholder="请输入联系电话" required>
+          <input type="tel" id="field_tel" placeholder="请输入联系电话" required>
         </div>
         <div class="form-group">
           <label>公司名称</label>
-          <input type="text" name="公司名称" placeholder="请输入公司名称">
+          <input type="text" id="field_company" placeholder="请输入公司名称">
         </div>
         <div class="form-group">
           <label>咨询内容</label>
-          <textarea name="咨询内容" placeholder="请简述您的投资管理需求…"></textarea>
+          <textarea id="field_message" placeholder="请简述您的投资管理需求…"></textarea>
         </div>
         <button type="submit" class="form-submit" id="submitBtn">发送 →</button>
       </form>
@@ -2764,6 +2754,9 @@ render();
         <div style="font-size:36px; margin-bottom:12px;">✓</div>
         <div style="color:var(--gold); font-size:18px; margin-bottom:8px;">发送成功</div>
         <div>我们已收到您的咨询，将尽快与您联系</div>
+      </div>
+      <div id="formError" style="display:none; text-align:center; padding:16px 0; color:#ff6b6b; font-size:14px;">
+        发送失败，请稍后重试或直接发送邮件至 lam.g.zoeng@waldorf.work
       </div>
     </div>
   </div>
@@ -2864,38 +2857,81 @@ render();
     });
   }
 
-  // Form submit via FormSubmit.co (AJAX)
+  // ── EmailJS 发送表单 ──────────────────────────────────────────────
+  // 使用说明（首次部署前请完成）：
+  //   1. 访问 https://www.emailjs.com 免费注册
+  //   2. Add New Service → 选择邮件服务商（如 Gmail / Outlook）→ 复制 Service ID
+  //   3. Email Templates → Create New Template，配置如下变量：
+  //        {{from_name}}  {{from_tel}}  {{from_company}}  {{message}}
+  //      收件人 To Email 填写 lam.g.zoeng@waldorf.work → 复制 Template ID
+  //   4. Account → Public Key → 复制
+  //   5. 将下方三个占位符替换为你的真实值，保存即可
+  const EMAILJS_PUBLIC_KEY  = '2KuvA8DZVEk6sk3Vf';
+  const EMAILJS_SERVICE_ID  = '200OK';
+  const EMAILJS_TEMPLATE_ID = 'template_ixvnco5';
+
+  (function() {
+    if (typeof emailjs !== 'undefined') {
+      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+    }
+  })();
+
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', async function(e) {
       e.preventDefault();
+
+      const name    = document.getElementById('field_name').value.trim();
+      const tel     = document.getElementById('field_tel').value.trim();
+      const company = document.getElementById('field_company').value.trim();
+      const message = document.getElementById('field_message').value.trim();
+
+      if (!name || !tel) {
+        alert('请填写姓名和联系电话');
+        return;
+      }
+
       const btn = document.getElementById('submitBtn');
       btn.textContent = '发送中…';
       btn.disabled = true;
       btn.style.opacity = '0.7';
+      document.getElementById('formError').style.display = 'none';
+
+      // 如果 EmailJS 未配置，降级为 mailto
+      if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY' || typeof emailjs === 'undefined') {
+        const subj = encodeURIComponent('【卫道夫官网咨询】' + name + (company ? ' · ' + company : ''));
+        const body = encodeURIComponent(
+          '姓名：' + name + '\n电话：' + tel +
+          (company ? '\n公司：' + company : '') +
+          '\n\n咨询内容：\n' + (message || '（未填写）')
+        );
+        window.open('mailto:lam.g.zoeng@waldorf.work?subject=' + subj + '&body=' + body);
+        contactForm.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
+        return;
+      }
+
       try {
-        const formData = new FormData(contactForm);
-        const response = await fetch('https://formsubmit.co/ajax/lam.g.zoeng@waldorf.work', {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: formData
+        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+          from_name:    name,
+          from_tel:     tel,
+          from_company: company || '未填写',
+          message:      message || '（未填写）',
+          reply_to:     '',
         });
-        const result = await response.json();
-        if (result.success === 'true' || result.success === true) {
-          contactForm.style.display = 'none';
-          document.getElementById('formSuccess').style.display = 'block';
-        } else {
-          throw new Error('failed');
-        }
+        contactForm.style.display = 'none';
+        document.getElementById('formSuccess').style.display = 'block';
       } catch (err) {
-        // Fallback: direct submit (navigates to FormSubmit thank-you page)
+        console.error('EmailJS error:', err);
         btn.textContent = '发送 →';
         btn.disabled = false;
         btn.style.opacity = '';
-        contactForm.submit();
+        document.getElementById('formError').style.display = 'block';
       }
     });
   }
 </script>
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </body>
 </html>

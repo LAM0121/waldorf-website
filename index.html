@@ -2670,67 +2670,31 @@ render();
         <div class="contact-item">
           <div class="contact-item-icon">💬</div>
           <div>
-            <div class="contact-item-label">企业微信</div>
-            <div class="contact-item-text" id="wechatTrigger" style="cursor:pointer; color:var(--gold);">点击查看企业微信二维码</div>
+            <div class="contact-item-label">联系微信</div>
+            <div class="contact-item-text" id="wechatTrigger" style="cursor:pointer; color:var(--gold);">点击查看微信二维码</div>
           </div>
         </div>
       </div>
 
-      <!-- 企业微信二维码弹窗 -->
-      <div id="wechatModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; align-items:center; justify-content:center;">
-        <div style="background:#0f2e22; border:1px solid rgba(200,168,75,0.4); border-radius:12px; padding:40px 36px; text-align:center; max-width:320px; width:90%; position:relative;">
-          <button id="wechatClose" style="position:absolute; top:14px; right:18px; background:none; border:none; color:rgba(255,255,255,0.5); font-size:22px; cursor:pointer; line-height:1;">✕</button>
-          <div style="font-size:15px; color:var(--gold); letter-spacing:0.1em; margin-bottom:24px;">企业微信</div>
-          <div id="wechatQR" style="width:180px; height:180px; margin:0 auto 20px; background:white; border-radius:8px; display:flex; align-items:center; justify-content:center; padding:12px;">
-            <svg viewBox="0 0 100 100" width="156" height="156" xmlns="http://www.w3.org/2000/svg">
-              <!-- QR placeholder pattern -->
-              <rect width="100" height="100" fill="white"/>
-              <!-- Top-left position pattern -->
-              <rect x="5" y="5" width="28" height="28" fill="none" stroke="#0f2e22" stroke-width="4"/>
-              <rect x="12" y="12" width="14" height="14" fill="#0f2e22"/>
-              <!-- Top-right position pattern -->
-              <rect x="67" y="5" width="28" height="28" fill="none" stroke="#0f2e22" stroke-width="4"/>
-              <rect x="74" y="12" width="14" height="14" fill="#0f2e22"/>
-              <!-- Bottom-left position pattern -->
-              <rect x="5" y="67" width="28" height="28" fill="none" stroke="#0f2e22" stroke-width="4"/>
-              <rect x="12" y="74" width="14" height="14" fill="#0f2e22"/>
-              <!-- Data dots pattern (WALDORF style) -->
-              <rect x="40" y="5" width="6" height="6" fill="#0f2e22"/>
-              <rect x="50" y="5" width="6" height="6" fill="#0f2e22"/>
-              <rect x="40" y="14" width="6" height="6" fill="#0f2e22"/>
-              <rect x="55" y="14" width="6" height="6" fill="#0f2e22"/>
-              <rect x="45" y="23" width="6" height="6" fill="#0f2e22"/>
-              <rect x="5" y="40" width="6" height="6" fill="#0f2e22"/>
-              <rect x="14" y="40" width="6" height="6" fill="#0f2e22"/>
-              <rect x="23" y="45" width="6" height="6" fill="#0f2e22"/>
-              <rect x="5" y="50" width="6" height="6" fill="#0f2e22"/>
-              <rect x="40" y="40" width="6" height="6" fill="#0f2e22"/>
-              <rect x="50" y="40" width="6" height="6" fill="#0f2e22"/>
-              <rect x="60" y="40" width="6" height="6" fill="#0f2e22"/>
-              <rect x="45" y="50" width="6" height="6" fill="#0f2e22"/>
-              <rect x="55" y="50" width="6" height="6" fill="#0f2e22"/>
-              <rect x="40" y="60" width="6" height="6" fill="#0f2e22"/>
-              <rect x="60" y="55" width="6" height="6" fill="#0f2e22"/>
-              <rect x="67" y="40" width="6" height="6" fill="#0f2e22"/>
-              <rect x="77" y="45" width="6" height="6" fill="#0f2e22"/>
-              <rect x="87" y="40" width="6" height="6" fill="#0f2e22"/>
-              <rect x="67" y="55" width="6" height="6" fill="#0f2e22"/>
-              <rect x="82" y="55" width="6" height="6" fill="#0f2e22"/>
-              <rect x="40" y="70" width="6" height="6" fill="#0f2e22"/>
-              <rect x="50" y="77" width="6" height="6" fill="#0f2e22"/>
-              <rect x="60" y="70" width="6" height="6" fill="#0f2e22"/>
-              <rect x="70" y="70" width="6" height="6" fill="#0f2e22"/>
-              <rect x="80" y="77" width="6" height="6" fill="#0f2e22"/>
-              <rect x="90" y="70" width="6" height="6" fill="#0f2e22"/>
-              <rect x="70" y="87" width="6" height="6" fill="#0f2e22"/>
-              <rect x="87" y="87" width="6" height="6" fill="#0f2e22"/>
-            </svg>
-          </div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.5);">扫码添加企业微信</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.3); margin-top:6px;">上海卫道夫投资管理有限公司</div>
-        </div>
-      </div>
+   <!-- 微信二维码弹窗 -->
+      <div id="wechatModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center; backdrop-filter: blur(8px);">
+  <div style="background:#0f2e22; border:1px solid rgba(200,168,75,0.4); border-radius:12px; padding:40px 36px; text-align:center; max-width:320px; width:90%; position:relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);">
+    
+    <button id="wechatClose" onclick="document.getElementById('wechatModal').style.display='none'" style="position:absolute; top:14px; right:18px; background:none; border:none; color:rgba(255,255,255,0.5); font-size:22px; cursor:pointer; line-height:1;">✕</button>
+    
+    <div style="font-size:15px; color:var(--gold); letter-spacing:0.1em; margin-bottom:24px;">添加微信</div>
+    
+    <div id="wechatQR" style="width:200px; height:200px; margin:0 auto 20px; background:white; border-radius:8px; display:flex; align-items:center; justify-content:center; padding:10px;">
+      
+      <img src="wechat-qr.jpg" style="width:100%; height:100%; object-fit: contain; display:block;">
+      
     </div>
+
+    <p style="color: rgba(255,255,255,0.6); font-size: 13px; line-height: 1.6;">扫一扫或长按识别二维码</p>
+  </div>
+</div>
+    </div>
+
     <div class="contact-right fade-in">
       <div class="contact-form-title">联系我们</div>
       <form id="contactForm" novalidate>

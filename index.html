@@ -696,34 +696,37 @@ html, body {
    移动端全量修复补丁 (放在所有 CSS 的最后)
    -------------------------------------------------- */
 @media (max-width: 768px) {
-    /* 1. 彻底禁用全屏位移，恢复自然滚动 */
-    .main-container {
+    /* 1. 强制容器不再执行位移，恢复标准文档流 */
+    .main-container, #scroll-wrap {
         transform: none !important;
         transition: none !important;
         height: auto !important;
+        display: block !important; /* 确保不是 flex 居中模式 */
     }
 
-    /* 2. 页面高度设为自动，由内容撑开 */
+    /* 2. 页面高度由内容决定 */
     .section, .page {
         height: auto !important; 
-        min-height: 100vh;
-        padding: 60px 20px 40px !important; /* 增加上下留白，防止内容顶格 */
+        min-height: 100vh; /* 至少占满一屏，内容多则自动拉长 */
+        padding: 80px 20px 60px !important; /* 增加上下留白 */
+        position: relative !important;
+        top: 0 !important;
         scroll-snap-align: none !important;
     }
 
-    /* 3. 强制恢复滚动条 */
+    /* 3. 恢复滚动条和手势 */
     html, body {
         overflow-y: auto !important;
         overflow-x: hidden !important;
         height: auto !important;
-        touch-action: auto !important; /* 恢复原生手势 */
+        touch-action: auto !important;
     }
 
-    /* 4. 将布局转为垂直排列，防止表单被挤压 */
-    .contact-inner {
+    /* 4. 栅格布局转为单列，防止表单挤压 */
+    .contact-inner, .vision-grid, .services-grid {
+        grid-template-columns: 1fr !important;
         display: flex !important;
         flex-direction: column !important;
-        gap: 20px;
     }
 }
 </style>
@@ -830,87 +833,18 @@ function resize(){
   W = canvas.width  = window.innerWidth;
   H = canvas.height = window.innerHeight;
 }
-window.addEventListener('resize', resize, {passive:true});
-resize();
-function getCoords(lon, lat, time){
-  const radius = Math.min(W,H)*0.26;
-  const rot = time*0.003;
-  const rl  = (lon*Math.PI/180)+rot;
-  const rla = lat*Math.PI/180;
-  const x3  = W/2+radius*Math.cos(rla)*Math.sin(rl);
-  const y3  = H/2-radius*Math.sin(rla)-100;
-  const z3  = radius*Math.cos(rla)*Math.cos(rl);
-  const x2  = W/2+(lon/180)*(W*0.45);
-  const y2  = H/2-(lat/90)*(H*0.35)-100;
-  return {
-    x: x3+(x2-x3)*transition,
-    y: y3+(y2-y3)*transition,
-    z: z3,
-    alpha: (z3+radius)/(radius*2)
-  };
-}
-let animPaused = false;
-document.addEventListener('visibilitychange',()=>{ animPaused=document.hidden; });
-function render(){
-  if(animPaused){ requestAnimationFrame(render); return; }
-  const bg = ctx.createRadialGradient(W/2,H/2,0, W/2,H/2,W);
-  bg.addColorStop(0,'#003a22'); bg.addColorStop(1,COLORS.bg);
-  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
-  transition += (targetTransition-transition)*0.04;
-  t++;
-  ctx.save();
-  for(let i=0;i<cities.length;i++){
-    for(let j=i+1;j<cities.length;j++){
-      const p1=getCoords(cities[i].lon,cities[i].lat,t);
-      const p2=getCoords(cities[j].lon,cities[j].lat,t);
-      if(transition>0.5||(p1.z>-60&&p2.z>-60)){
-        const d=Math.hypot(p1.x-p2.x,p1.y-p2.y);
-        const op=(transition>0.5?0.15:p1.alpha*0.25)*(1-d/(W*0.6));
-        ctx.beginPath(); ctx.moveTo(p1.x,p1.y); ctx.lineTo(p2.x,p2.y);
-        ctx.strokeStyle=`rgba(200,168,75,${op})`; ctx.lineWidth=0.8; ctx.stroke();
-        const pt=(t*0.008+i)%1;
-        ctx.fillStyle=COLORS.accent;
-        ctx.shadowBlur=12; ctx.shadowColor=COLORS.accent;
-        ctx.beginPath(); ctx.arc(p1.x+(p2.x-p1.x)*pt,p1.y+(p2.y-p1.y)*pt,2.5,0,Math.PI*2); ctx.fill();
-        ctx.shadowBlur=0;
-      }
-    }
-  }
-  ctx.restore();
-  cities.map((city,i)=>({city,i,pos:getCoords(city.lon,city.lat,t)}))
-    .sort((a,b)=>a.pos.z-b.pos.z)
-    .forEach(({city,i,pos})=>{
-      if(transition>0.5||pos.z>-120){
-        ctx.save();
-        const da=transition>0.5?1:Math.max(0.3,pos.alpha);
-        const ds=transition>0.5?1:(0.6+pos.alpha*0.4);
-        ctx.globalAlpha=da;
-        ctx.fillStyle=COLORS.accent;
-        ctx.shadowBlur=10; ctx.shadowColor=COLORS.accent;
-        ctx.beginPath(); ctx.arc(pos.x,pos.y,4*ds,0,Math.PI*2); ctx.fill();
-        ctx.shadowBlur=0;
-        const r=(8+Math.sin(t*0.06+i)*6)*ds;
-        ctx.strokeStyle=COLORS.accent; ctx.lineWidth=1;
-        ctx.beginPath(); ctx.arc(pos.x,pos.y,r,0,Math.PI*2); ctx.stroke();
-        const fs=transition>0.5?11:Math.max(8,11*ds);
-        ctx.fillStyle=transition>0.5?'#fff':COLORS.accentBright;
-        ctx.font=`bold ${fs}px Arial`;
-        ctx.shadowBlur=4; ctx.shadowColor='#000';
-        let ox=transition>0.5?15:12, oy=5;
-        ctx.textAlign='left';
-        if(transition<0.5){
-          if(pos.x>W*0.6){ctx.textAlign='right'; ox=-12;}
-          if(pos.y<H*0.4) oy=fs+8;
+window.addEventListener('wheel', function(e) {
+    // 只有在屏幕宽度大于 768px (PC端) 时才执行 e.preventDefault()
+    if (window.innerWidth > 768) {
+        e.preventDefault(); 
+        if (isLocked) return;
+        if (e.deltaY > 15) { 
+            scrollToPage(currentIdx + 1);
+        } else if (e.deltaY < -15) { 
+            scrollToPage(currentIdx - 1);
         }
-        ctx.fillText(city.name,pos.x+ox,pos.y+oy);
-        ctx.shadowBlur=0;
-        ctx.restore();
-      }
-    });
-  requestAnimationFrame(render);
-}
-render();
-})();
+    }
+}, { passive: false }); // 注意：移动端需要原生滚动，所以这里加了宽度判断后不会冲突
 </script>
 
 
@@ -1369,11 +1303,11 @@ document.getElementById('contact-form').addEventListener('submit', function(even
 
    
 function scrollToPage(idx) {
-    // 【核心修复】如果是移动端，直接退出，不执行任何 JS 翻页逻辑
+    // 【关键替换】如果在手机端，直接跳出，不执行任何平移逻辑
     if (window.innerWidth <= 768) return; 
 
     if (idx < 0 || idx >= totalPages || isLocked) return;
-    // ... 后续代码不变
-
+    // ... 后面原有的代码 ...
+}
 </body>
 </html>

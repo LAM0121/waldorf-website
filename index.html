@@ -696,30 +696,34 @@ html, body {
    移动端全量修复补丁 (放在所有 CSS 的最后)
    -------------------------------------------------- */
 @media (max-width: 768px) {
-    /* 1. 禁用强制位移，恢复原生滚动 */
+    /* 1. 彻底禁用全屏位移，恢复自然滚动 */
     .main-container {
         transform: none !important;
         transition: none !important;
+        height: auto !important;
     }
 
-    /* 2. 允许内容撑开高度，防止截断 */
+    /* 2. 页面高度设为自动，由内容撑开 */
     .section, .page {
         height: auto !important; 
-        min-min-height: 100vh;
-        padding: 80px 20px 40px !important;
+        min-height: 100vh;
+        padding: 60px 20px 40px !important; /* 增加上下留白，防止内容顶格 */
         scroll-snap-align: none !important;
     }
 
-    /* 3. 所有栅格布局转为单列 */
-    .contact-inner, .vision-grid, .services-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    /* 4. 恢复移动端手势和滚动条 */
+    /* 3. 强制恢复滚动条 */
     html, body {
         overflow-y: auto !important;
+        overflow-x: hidden !important;
         height: auto !important;
-        touch-action: auto !important;
+        touch-action: auto !important; /* 恢复原生手势 */
+    }
+
+    /* 4. 将布局转为垂直排列，防止表单被挤压 */
+    .contact-inner {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px;
     }
 }
 </style>
@@ -1212,17 +1216,18 @@ if(window.visualViewport){
 
 // ── 滚轮（桌面）— deltaY 累积防抖 ──────────────────────────
 let wheelAccum = 0, wheelTimer;
-window.addEventListener('wheel', e=>{
-  e.preventDefault();
-  if(locked) return;
-  wheelAccum += e.deltaY;
-  clearTimeout(wheelTimer);
-  wheelTimer = setTimeout(()=>{ wheelAccum = 0; }, 80);
-  if(Math.abs(wheelAccum) < 50) return; // 触控板防误触
-  const dir = wheelAccum > 0 ? 1 : -1;
-  wheelAccum = 0;
-  goTo(cur + dir);
-}, {passive:false});
+window.addEventListener('wheel', function(e) {
+    // 只有在 PC 端（宽度 > 768）才拦截原生滚动
+    if (window.innerWidth > 768) {
+        e.preventDefault(); 
+        if (isLocked) return;
+        if (e.deltaY > 15) { 
+            scrollToPage(currentIdx + 1);
+        } else if (e.deltaY < -15) { 
+            scrollToPage(currentIdx - 1);
+        }
+    }
+}, { passive: false });
 
 // ── 触摸（手机/平板）──────────────────────────────────────
 let ty=0, tx=0, ttime=0, moved=false;
@@ -1362,58 +1367,13 @@ document.getElementById('contact-form').addEventListener('submit', function(even
     const sections = document.querySelectorAll('#hero, #services, #cases, #contact'); 
     let isLocked = false;
 
-    // 1. 核心翻页函数
+   
 function scrollToPage(idx) {
-    // 【新增这一行】如果是移动端，直接退出，不执行 JS 翻页逻辑
+    // 【核心修复】如果是移动端，直接退出，不执行任何 JS 翻页逻辑
     if (window.innerWidth <= 768) return; 
 
     if (idx < 0 || idx >= totalPages || isLocked) return;
-    // ... 原有的后续代码保持不变 ...
-
-    // 3. 滚轮/触摸板事件：实现“上滑 -> 上一页，下滑 -> 下一页”
-    window.addEventListener('wheel', function(e) {
-        e.preventDefault(); // 拦截原生滚动
-        if (isLocked) return;
-
-        // 特殊逻辑判断：
-        // deltaY > 0 是向下滚动，跳转到【下一页】
-        // deltaY < 0 是向上滚动，跳转到【上一页】
-        if (e.deltaY > 15) { 
-            scrollToPage(currentIdx + 1);
-        } else if (e.deltaY < -15) { 
-            scrollToPage(currentIdx - 1);
-        }
-    }, { passive: false });
-
-    // 4. 移动端触摸事件：实现“左滑 -> 上一页，右滑 -> 下一页”
-    let startX = 0;
-    window.addEventListener('touchstart', e => {
-        startX = e.touches[0].clientX; // 记录初始 X 轴坐标
-    }, { passive: true });
-
-    window.addEventListener('touchend', e => {
-        if (isLocked) return;
-        let endX = e.changedTouches[0].clientX; // 记录结束 X 轴坐标
-        let diffX = startX - endX;
-
-        if (Math.abs(diffX) > 60) { // 识别滑动距离阈值
-            // 特殊逻辑判断：
-            // diffX > 0 是向左滑动（手指往左拉），跳转到【上一页】
-            // diffX < 0 是向右滑动（手指往右拉），跳转到【下一页】
-            if (diffX > 0) {
-                scrollToPage(currentIdx - 1);
-            } else {
-                scrollToPage(currentIdx + 1);
-            }
-        }
-    }, { passive: true });
-
-    // 5. 弹窗控制函数
-    window.showQR = function() {
-        const modal = document.getElementById('wechatModal');
-        if (modal) modal.style.display = 'flex';
-    };
-})();
+    // ... 后续代码不变
 
 </body>
 </html>

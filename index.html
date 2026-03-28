@@ -1285,78 +1285,40 @@ document.querySelectorAll('.reveal,.reveal-l').forEach(el=>io.observe(el));
 </script>
 
 <!-- EmailJS — defer异步加载 -->
-// 使用说明（首次部署前请完成）：
-  //   1. 访问 https://www.emailjs.com 免费注册
-  //   2. Add New Service → 选择邮件服务商（如 Gmail / Outlook）→ 复制 Service ID
-  //   3. Email Templates → Create New Template，配置如下变量：
-  //        {{from_name}}  {{from_tel}}  {{from_company}}  {{message}}
-  //      收件人 To Email 填写 lam.g.zoeng@waldorf.work → 复制 Template ID
-  //   4. Account → Public Key → 复制
-  //   5. 将下方三个占位符替换为你的真实值，保存即可
-  const EMAILJS_PUBLIC_KEY  = '2KuvA8DZVEk6sk3Vf';
-  const EMAILJS_SERVICE_ID  = 'service_d9t1qup';
-  const EMAILJS_TEMPLATE_ID = 'template_ixvnco5';
+// 1. 初始化 EmailJS
+(function() {
+    emailjs.init('2KuvA8DZVEk6sk3Vf'); // 您的 Public Key
+})();
 
-  (function() {
-    if (typeof emailjs !== 'undefined') {
-      emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-    }
-  })();
+// 2. 绑定提交事件
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contact-form');
+    if (form) {
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
 
-  const contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
+            const btn = this.querySelector('.form-submit');
+            const originalText = btn.innerHTML;
+            
+            // 按钮状态反馈
+            btn.innerHTML = '发送中...';
+            btn.disabled = true;
 
-      const name    = document.getElementById('field_name').value.trim();
-      const tel     = document.getElementById('field_tel').value.trim();
-      const company = document.getElementById('field_company').value.trim();
-      const message = document.getElementById('field_message').value.trim();
-
-      if (!name || !tel) {
-        alert('请填写姓名和联系电话');
-        return;
-      }
-
-      const btn = document.getElementById('submitBtn');
-      btn.textContent = '发送中…';
-      btn.disabled = true;
-      btn.style.opacity = '0.7';
-      document.getElementById('formError').style.display = 'none';
-
-      // 如果 EmailJS 未配置，降级为 mailto
-      if (EMAILJS_PUBLIC_KEY === 'YOUR_PUBLIC_KEY' || typeof emailjs === 'undefined') {
-        const subj = encodeURIComponent('【卫道夫官网咨询】' + name + (company ? ' · ' + company : ''));
-        const body = encodeURIComponent(
-          '姓名：' + name + '\n电话：' + tel +
-          (company ? '\n公司：' + company : '') +
-          '\n\n咨询内容：\n' + (message || '（未填写）')
-        );
-        window.open('mailto:lam.g.zoeng@waldorf.work?subject=' + subj + '&body=' + body);
-        contactForm.style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-        return;
-      }
-
-      try {
-        await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-          from_name:    name,
-          from_tel:     tel,
-          from_company: company || '未填写',
-          message:      message || '（未填写）',
-          reply_to:     '',
+            // 使用 sendForm 方法，EmailJS 会自动根据 input 的 name 属性填充模板
+            emailjs.sendForm('service_d9t1qup', 'template_ixvnco5', this)
+                .then(function() {
+                    alert('感谢您的咨询，我们将尽快与您联系！');
+                    form.reset();
+                }, function(error) {
+                    alert('发送失败，请稍后重试。原因: ' + JSON.stringify(error));
+                })
+                .finally(() => {
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                });
         });
-        contactForm.style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-      } catch (err) {
-        console.error('EmailJS error:', err);
-        btn.textContent = '发送 →';
-        btn.disabled = false;
-        btn.style.opacity = '';
-        document.getElementById('formError').style.display = 'block';
-      }
-    });
-  }
+    }
+});
 </script>
 <!-- EmailJS SDK -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>

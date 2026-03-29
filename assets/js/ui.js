@@ -26,6 +26,15 @@
     });
   }
 
+  // 在汉堡菜单的链接点击事件中
+overlay.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    overlay.classList.remove('open');
+    hamburger.classList.remove('open');
+    // 恢复 body 滚动
+    document.body.style.overflow = ''; 
+  });
+});
   // ── 企业微信弹窗 ──────────────────────────────────────────
   const wt = document.getElementById('wechat-trigger');
   const wm = document.getElementById('wechat-modal');

@@ -2,64 +2,374 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>投后管理数据库 - 上海卫道夫投资管理</title>
+  <style>
+    :root {
+      --forest-deep: #0f2e22;
+      --forest: #1a4435;
+      --gold: #c8a84b;
+      --gold-light: #d4bc4a;
+    }
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="assets/css/report.css">
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9FPCQK3QVC"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-9FPCQK3QVC');
-  </script>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, var(--forest-deep) 0%, var(--forest) 100%);
+      min-height: 100vh;
+      color: white;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: rgba(15, 46, 34, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(200, 168, 75, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 40px;
+      z-index: 100;
+    }
+
+    .nav-content {
+      width: 100%;
+      max-width: 1400px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    .nav-back {
+      padding: 12px 28px;
+      background: transparent;
+      border: 2px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .nav-back:hover {
+      background: var(--gold);
+      color: var(--forest-deep);
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 120px 40px 80px;
+    }
+
+    .login-section {
+      max-width: 500px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(200, 168, 75, 0.3);
+      border-radius: 12px;
+      padding: 48px;
+    }
+
+    .login-section.hidden {
+      display: none;
+    }
+
+    .login-title {
+      font-size: 32px;
+      color: var(--gold);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .login-subtitle {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      margin-bottom: 36px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 15px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 8px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(200, 168, 75, 0.3);
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .form-input::placeholder {
+      color: rgba(255,255,255,0.4);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 16px;
+      background: var(--gold);
+      color: var(--forest-deep);
+      border: none;
+      border-radius: 6px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-login:hover {
+      background: var(--gold-light);
+    }
+
+    .error-message {
+      color: #ff6b6b;
+      font-size: 14px;
+      margin-top: 12px;
+      text-align: center;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    .database-section {
+      display: none;
+    }
+
+    .database-section.active {
+      display: block;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .page-title {
+      font-size: 48px;
+      color: var(--gold);
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+
+    .page-subtitle {
+      font-size: 20px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .user-info {
+      text-align: right;
+      margin-bottom: 24px;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .btn-logout {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 8px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 12px;
+    }
+
+    .btn-logout:hover {
+      background: var(--gold);
+      color: var(--forest-deep);
+    }
+
+    .database-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .db-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(200, 168, 75, 0.2);
+      border-radius: 8px;
+      padding: 32px;
+      transition: all 0.4s;
+      cursor: pointer;
+    }
+
+    .db-card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+
+    .db-icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+
+    .db-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .db-description {
+      font-size: 15px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .db-stats {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 20px;
+      border-top: 1px solid rgba(200, 168, 75, 0.1);
+    }
+
+    .db-stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+    }
+
+    .db-stat-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .data-table-container {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(200, 168, 75, 0.2);
+      border-radius: 8px;
+      padding: 32px;
+      margin-top: 40px;
+    }
+
+    .table-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .table-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .btn-add {
+      padding: 12px 24px;
+      background: var(--gold);
+      color: var(--forest-deep);
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(200, 168, 75, 0.1);
+    }
+
+    .data-table th {
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .data-table td {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .status-badge {
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .status-active {
+      background: rgba(34, 197, 94, 0.2);
+      color: #4ade80;
+    }
+
+    @media (max-width: 968px) {
+      .database-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-
   <nav>
-    <a href="index.html" class="nav-logo" aria-label="返回首页">
-      <svg class="nav-logo-icon" viewBox="0 0 480 620" aria-hidden="true" focusable="false">
-        <path d="M95 105 Q240 85 385 105 V375 C385 460 240 525 240 525 C240 525 95 460 95 375 Z" fill="#0F6F4A" stroke="#C9B037" stroke-width="6"/>
-        <text x="240" y="162" text-anchor="middle" font-family="Georgia,serif" font-size="36" font-weight="700" letter-spacing="4.8" fill="#C9B037">WALDORF</text>
-        <text x="240" y="420" text-anchor="middle" font-family="Georgia,serif" font-size="13.5" letter-spacing="2.4" fill="#C9B037">ORDO • FIDES • TEMPUS</text>
-        <rect x="212" y="185" width="56" height="160" fill="#C9B037"/>
-        <rect x="152" y="210" width="40" height="135" fill="#C9B037"/>
-        <rect x="288" y="210" width="40" height="135" fill="#C9B037"/>
-        <text x="172" y="370" text-anchor="middle" font-family="Microsoft YaHei,sans-serif" font-size="12" fill="#C9B037">秩序</text>
-        <text x="242" y="370" text-anchor="middle" font-family="Microsoft YaHei,sans-serif" font-size="12" fill="#C9B037">信仰</text>
-        <text x="308" y="370" text-anchor="middle" font-family="Microsoft YaHei,sans-serif" font-size="12" fill="#C9B037">可持续</text>
-      </svg>
-      <div class="nav-logo-text">
-        <span class="nav-logo-cn">上海卫道夫投资管理有限公司</span>
-      </div>
-    </a>
-    <a href="index.html" class="nav-back">返回首页</a>
+    <div class="nav-content">
+      <a href="index.html" class="nav-logo">WALDORF</a>
+      <a href="index.html" class="nav-back">返回首页</a>
+    </div>
   </nav>
 
   <div class="container">
-
-    <!-- ── 登录面板 ── -->
     <div class="login-section" id="loginSection">
       <h1 class="login-title">投后管理数据库</h1>
       <p class="login-subtitle">请登录访问投后管理系统</p>
+      
       <form id="loginForm">
         <div class="form-group">
           <label class="form-label">用户名</label>
-          <input type="text" class="form-input" id="username" placeholder="请输入用户名" required autocomplete="username">
+          <input type="text" class="form-input" id="username" placeholder="请输入用户名" required>
         </div>
+        
         <div class="form-group">
           <label class="form-label">密码</label>
-          <input type="password" class="form-input" id="password" placeholder="请输入密码" required autocomplete="current-password">
+          <input type="password" class="form-input" id="password" placeholder="请输入密码" required>
         </div>
+        
         <button type="submit" class="btn-login">登录</button>
         <p class="error-message" id="errorMessage">用户名或密码错误</p>
       </form>
     </div>
 
-    <!-- ── 数据库面板 ── -->
     <div class="database-section" id="databaseSection">
       <div class="page-header">
         <h1 class="page-title">投后管理数据库</h1>
@@ -81,6 +391,7 @@
             <div><span class="db-stat-value">45</span><span class="db-stat-label">活跃项目</span></div>
           </div>
         </div>
+
         <div class="db-card">
           <span class="db-icon">📈</span>
           <h3 class="db-title">财务数据库</h3>
@@ -90,6 +401,7 @@
             <div><span class="db-stat-value">Q4</span><span class="db-stat-label">最新季度</span></div>
           </div>
         </div>
+
         <div class="db-card">
           <span class="db-icon">⚠️</span>
           <h3 class="db-title">风险监控库</h3>
@@ -99,6 +411,7 @@
             <div><span class="db-stat-value">5</span><span class="db-stat-label">待处理</span></div>
           </div>
         </div>
+
         <div class="db-card">
           <span class="db-icon">🏛️</span>
           <h3 class="db-title">治理数据库</h3>
@@ -108,6 +421,7 @@
             <div><span class="db-stat-value">12</span><span class="db-stat-label">本月会议</span></div>
           </div>
         </div>
+
         <div class="db-card">
           <span class="db-icon">📝</span>
           <h3 class="db-title">报告文档库</h3>
@@ -117,6 +431,7 @@
             <div><span class="db-stat-value">28</span><span class="db-stat-label">本月新增</span></div>
           </div>
         </div>
+
         <div class="db-card">
           <span class="db-icon">👥</span>
           <h3 class="db-title">人员信息库</h3>
@@ -133,49 +448,80 @@
           <h2 class="table-title">近期投资项目</h2>
           <button class="btn-add">+ 新增项目</button>
         </div>
-        <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>项目名称</th>
-                <th>行业</th>
-                <th>投资金额</th>
-                <th>投资日期</th>
-                <th>状态</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>华东物流供应链项目</td>
-                <td>物流运输</td>
-                <td>¥5,000万</td>
-                <td>2024-03-15</td>
-                <td><span class="status-badge status-active">运营中</span></td>
-              </tr>
-              <tr>
-                <td>智能制造产业园</td>
-                <td>智能制造</td>
-                <td>¥8,500万</td>
-                <td>2024-06-22</td>
-                <td><span class="status-badge status-active">运营中</span></td>
-              </tr>
-              <tr>
-                <td>绿色能源科技公司</td>
-                <td>新能源</td>
-                <td>¥12,000万</td>
-                <td>2024-08-10</td>
-                <td><span class="status-badge status-active">运营中</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>项目名称</th>
+              <th>行业</th>
+              <th>投资金额</th>
+              <th>投资日期</th>
+              <th>状态</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>华东物流供应链项目</td>
+              <td>物流运输</td>
+              <td>¥5,000万</td>
+              <td>2024-03-15</td>
+              <td><span class="status-badge status-active">运营中</span></td>
+            </tr>
+            <tr>
+              <td>智能制造产业园</td>
+              <td>智能制造</td>
+              <td>¥8,500万</td>
+              <td>2024-06-22</td>
+              <td><span class="status-badge status-active">运营中</span></td>
+            </tr>
+            <tr>
+              <td>绿色能源科技公司</td>
+              <td>新能源</td>
+              <td>¥12,000万</td>
+              <td>2024-08-10</td>
+              <td><span class="status-badge status-active">运营中</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </div><!-- /.database-section -->
+    </div>
+  </div>
 
-  </div><!-- /.container -->
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const loginSection = document.getElementById('loginSection');
+    const databaseSection = document.getElementById('databaseSection');
+    const errorMessage = document.getElementById('errorMessage');
+    const currentUser = document.getElementById('currentUser');
+    const logoutBtn = document.getElementById('logoutBtn');
 
-  <!-- SCRIPT -->
-  <script src="assets/js/report.js"></script>
+    const validCredentials = {
+      'admin': 'admin123',
+      'manager': 'manager123'
+    };
 
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      if (validCredentials[username] && validCredentials[username] === password) {
+        loginSection.classList.add('hidden');
+        databaseSection.classList.add('active');
+        currentUser.textContent = `欢迎，${username}`;
+        errorMessage.classList.remove('show');
+        loginForm.reset();
+      } else {
+        errorMessage.classList.add('show');
+        setTimeout(() => errorMessage.classList.remove('show'), 3000);
+      }
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      loginSection.classList.remove('hidden');
+      databaseSection.classList.remove('active');
+    });
+  </script>
 </body>
 </html>

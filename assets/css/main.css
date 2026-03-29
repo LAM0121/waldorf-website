@@ -530,12 +530,18 @@ footer{
 ═══════════════════════════════════════════════════════ */
 /* --- 优化后的适配补丁 --- */
 html, body {
-  /* 仅在首页的全屏滚动模式下锁定，其他页面（如报表中心）允许正常滚动 */
-  overflow-x: hidden; 
+  overflow: hidden !important;
+  /* 允许浏览器处理垂直方向的触摸，防止 JS 失灵时彻底锁死 */
+  touch-action: pan-y; 
   height: 100%;
-  /* 解决点击延迟和过度拉伸 */
-  touch-action: manipulation; 
-  overscroll-behavior-y: none;
+  width: 100%;
+}
+
+#scroll-wrap {
+  display: block;
+  width: 100%;
+  height: 100%;
+  will-change: transform; /* 提升性能，防止滑动卡顿 */
 }
 
 .page {

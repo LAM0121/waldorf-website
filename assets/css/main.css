@@ -531,40 +531,50 @@ footer{
 }
 
 /* ═══════════════════════════════════════════════════════
-   全设备精准一屏适配补丁
+   布局调整：从全屏翻页改为常规滚动
 ═══════════════════════════════════════════════════════ */
-/* --- 优化后的适配补丁 --- */
 html, body {
-  overflow: hidden !important;
-  /* 允许浏览器处理垂直方向的触摸，防止 JS 失灵时彻底锁死 */
-  touch-action: pan-y; 
-  height: 100%;
-  width: 100%;
+  /* 允许滚动，并移除强制一屏限制 */
+  overflow-x: hidden !important;
+  overflow-y: auto !important; 
+  height: auto !important;
+  overscroll-behavior: auto; /* 恢复默认滚动行为 */
+  touch-action: auto;        /* 允许触摸滚动 */
+  scroll-behavior: smooth;   /* 开启平滑滚动效果 */
 }
 
+/* 页面容器不再锁定高度 */
 #scroll-wrap {
+  transform: none !important; /* 禁用 JS 引擎的位移 */
+  transition: none !important;
+  height: auto !important;
   display: block;
-  width: 100%;
-  height: 100%;
-  will-change: transform; /* 提升性能，防止滑动卡顿 */
 }
 
 .page {
-  /* 使用 dvh (Dynamic Viewport Height) 自动扣除手机浏览器地址栏高度 */
-  height: 100dvh; 
-  min-height: -webkit-fill-available;
-  /* 增加内边距安全区，防止内容贴边或被刘海屏遮挡 */
-  padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom);
-  overflow: hidden; /* 首页每一屏内部依然保持锁定 */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  /* 每一块至少占满一屏，但高度随内容自动撑开 */
+  height: auto !important;
+  min-height: 100vh;
+  min-height: 100dvh;
+  max-height: none !important;
+  overflow: visible !important;
+  position: relative;
+  /* 增加内边距，防止内容紧贴边缘 */
+  padding-top: var(--nav-h);
+  padding-bottom: 40px;
+  box-sizing: border-box;
 }
 
-/* 优化 Slogan 文字大小：使用 clamp 自动伸缩 */
-.hero-slogan-line1, .hero-slogan-line2 {
-  font-size: clamp(24px, 7vw, 42px) !important;
-  line-height: 1.3;
-  white-space: normal; /* 允许在极窄屏下换行 */
-  word-break: keep-all;
+/* 针对移动端的特殊优化 */
+@media (max-width: 768px) {
+  .section-content {
+    padding: 60px 20px;
+    height: auto;
+  }
+  
+  /* 确保背景 Canvas 作为底层固定背景 */
+  #heroCanvas {
+    position: fixed !important;
+    z-index: -1;
+  }
 }

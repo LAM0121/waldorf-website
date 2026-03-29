@@ -17,11 +17,21 @@
   const LOCK_MS = 800;   // 锁定时间 (ms)
   const EASE    = 'cubic-bezier(0.77,0,0.175,1)';
 
-  /** 精准视口高度（排除地址栏） */
-  function vh() {
-    return window.visualViewport ? window.visualViewport.height : window.innerHeight;
+/** 精准视口高度：增加对旋转和缩放的兼容 */
+function vh() {
+  // 优先使用 visualViewport 获得实际可视区域
+  if (window.visualViewport) {
+    return window.visualViewport.height;
   }
+  return window.innerHeight;
+}
 
+// 在代码末尾增加监听，防止手机横屏后布局乱掉
+window.visualViewport.addEventListener('resize', () => {
+  // 重新计算并定位当前页面
+  snapTo(cur); 
+});
+  
   /** 无动画定位 */
   function snapTo(i) {
     WRAP.style.transition = 'none';

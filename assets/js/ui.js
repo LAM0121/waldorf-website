@@ -5,34 +5,15 @@
 (function () {
 
   // ── 汉堡菜单 ─────────────────────────────────────────────
-  // ── 汉堡菜单逻辑修正 ─────────────────────────────────────────────
-  const hamburger = document.getElementById('hamburger');
-  const overlay   = document.getElementById('mobile-overlay');
-
-  if (hamburger && overlay) {
-    hamburger.addEventListener('click', () => {
-      const open = hamburger.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', String(open));
-      overlay.classList.toggle('open', open);
-      
-      // 【关键修正】：同时控制 html 和 body，防止自吸效果在菜单打开时抖动
-      const overflowVal = open ? 'hidden' : '';
-      document.documentElement.style.overflow = overflowVal;
-      document.body.style.overflow = overflowVal;
-    });
-
-    overlay.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        overlay.classList.remove('open');
-        hamburger.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
-        
-        // 【关键修正】：恢复滚动
-        document.documentElement.style.overflow = '';
-        document.body.style.overflow = '';
-      });
-    });
-  }
+  overlay.querySelectorAll('a').forEach(a => {
+  a.addEventListener('click', () => {
+    overlay.classList.remove('open');
+    hamburger.classList.remove('open');
+    // 恢复滚动能力，否则自吸会失效
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+  });
+});
   // ── 企业微信弹窗 ──────────────────────────────────────────
   const wt = document.getElementById('wechat-trigger');
   const wm = document.getElementById('wechat-modal');

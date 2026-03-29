@@ -583,3 +583,35 @@ html, body {
     padding-top: 100px;
   }
 }
+
+/* ═══════════════════════════════════════════════════════
+   最终修正：释放滚动权限，激活自吸
+═══════════════════════════════════════════════════════ */
+html, body {
+  /* 必须是 auto 或 visible，绝不能是 hidden */
+  overflow-y: auto !important; 
+  height: 100% !important;
+  /* 开启系统级自吸 */
+  scroll-snap-type: y mandatory; 
+  scroll-behavior: smooth;
+  /* 允许手机端手势操作 */
+  touch-action: pan-y !important; 
+  -webkit-overflow-scrolling: touch;
+}
+
+#scroll-wrap {
+  /* 暴力解除任何残留的位移效果 */
+  transform: none !important; 
+  transition: none !important;
+  display: block;
+}
+
+.page {
+  /* 设置吸附点 */
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  /* 解决移动端显示不全的关键：最小高度一屏，但允许被长内容撑高 */
+  min-height: 100dvh;
+  height: auto;
+  pointer-events: auto !important;
+}

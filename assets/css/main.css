@@ -526,10 +526,11 @@ footer{
 }
 
 /* ═══════════════════════════════════════════════════════
-   全设备自适应与自吸滚动修正
+   全设备自适应与原生自吸滚动修正
 ═══════════════════════════════════════════════════════ */
 :root {
-  --full-h: 100dvh; /* 动态视口高度，自动处理移动端地址栏 */
+  /* 使用 dvh 解决移动端浏览器工具栏变动导致的高度跳动 */
+  --full-h: 100dvh; 
 }
 
 html, body {
@@ -537,7 +538,7 @@ html, body {
   overflow-y: auto !important; 
   overflow-x: hidden;
   height: 100% !important;
-  /* 开启垂直方向强制自吸 */
+  /* 开启垂直方向强制捕捉，由系统内核处理，比 JS 模拟更丝滑 */
   scroll-snap-type: y mandatory; 
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
@@ -545,13 +546,13 @@ html, body {
 
 #scroll-wrap {
   width: 100%;
-  /* 移除原有的 transform 冲突，由系统原生处理滚动 */
+  /* 彻底废弃旧版 JS 驱动的位移 */
   transform: none !important; 
   transition: none !important;
 }
 
 .page {
-  /* 核心修正：最小高度 100dvh，但允许内容超过一屏 */
+  /* 核心：最小高度 100dvh，但允许被长内容撑开（解决移动端显示不全） */
   min-height: var(--full-h); 
   height: auto; 
   width: 100%;
@@ -559,18 +560,18 @@ html, body {
   flex-direction: column;
   /* 设置自吸停靠点为顶部 */
   scroll-snap-align: start;
+  /* 即使快速滑动也确保停留在某一页 */
   scroll-snap-stop: always;
   
   box-sizing: border-box;
-  padding: 80px 24px; /* 为移动端留出足够的上下间距 */
+  padding: 80px 24px; 
   position: relative;
-  overflow: visible; /* 允许内部长内容显示 */
 }
 
-/* 针对手机端的微调 */
+/* 移动端特殊适配：内容靠顶展示，防止居中导致顶部文字被遮挡 */
 @media (max-width: 768px) {
   .page {
-    justify-content: flex-start; /* 内容靠上，防止长内容居中导致顶部被遮挡 */
+    justify-content: flex-start;
     padding-top: 100px;
   }
 }

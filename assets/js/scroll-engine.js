@@ -1,32 +1,48 @@
+/**
+ * scroll-engine.js - 精准全屏翻页引擎
+ */
 (function () {
   'use strict';
-  const PAGES = document.querySelectorAll('.page');
-  const NAV_LINKS = document.querySelectorAll('a[data-page]');
+  const WRAP = document.getElementById('scroll-wrap');
+  const PAGES = Array.from(document.querySelectorAll('.page'));
+  const PROG = document.getElementById('progress-bar');
+  let cur = 0, locked = false;
 
-  // 1. 处理导航点击跳转（使用原生的 scrollIntoView）
-  NAV_LINKS.forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const idx = parseInt(a.dataset.page);
-      const targetPage = PAGES[idx];
-      if (targetPage) {
-        // 这一行是关键：让浏览器自己滚到目标位置，配合 CSS 自吸
-        targetPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+  function vh() { return window.visualViewport ? window.visualViewport.height : window.innerHeight; }
+
+  function goTo(i) {
+    if (i < 0 || i >= PAGES.length || locked) return;
+    locked = true;
+    cur = i;
+    const offset = -i * vh();
+    
+    WRAP.style.transition = 'transform 750ms cubic-bezier(0.77,0,0.175,1)';
+    WRAP.style.transform = `translateY(${offset}px)`;
+
+    if (PROG) PROG.style.width = `${((i + 1) / PAGES.length) * 100}%`;
+    
+    setTimeout(() => { locked = false; }, 800);
+    updateNav(i);
+  }
+
+  function updateNav(i) {
+    document.querySelectorAll('a[data-page]').forEach(a => {
+      a.classList.toggle('active', parseInt(a.dataset.page) === i);
     });
+  }
+
+  window.addEventListener('wheel', e => { goTo(e.deltaY > 0 ? cur + 1 : cur - 1); }, { passive: true });
+  
+  // 触摸支持
+  let ts;
+  window.addEventListener('touchstart', e => { ts = e.touches[0].clientY; }, { passive: true });
+  window.addEventListener('touchend', e => {
+    const te = e.changedTouches[0].clientY;
+    if (Math.abs(ts - te) > 50) goTo(ts > te ? cur + 1 : cur - 1);
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    WRAP.style.transition = 'none';
+    WRAP.style.transform = `translateY(${-cur * vh()}px)`;
   });
-
-  // 2. 监听滚动位置，自动高亮对应的导航点
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const index = Array.from(PAGES).indexOf(entry.target);
-        NAV_LINKS.forEach((link, i) => link.classList.toggle('active', i === index));
-        const prog = document.getElementById('progress-bar');
-        if (prog) prog.style.transform = `scaleX(${(index + 1) / PAGES.length})`;
-      }
-    });
-  }, { threshold: 0.6 }); // 只有当页面露出 60% 时才算切换
-
-  PAGES.forEach(page => observer.observe(page));
 })();

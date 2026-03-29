@@ -526,60 +526,51 @@ footer{
 }
 
 /* ═══════════════════════════════════════════════════════
-   全设备精准一屏适配补丁
+   全设备自适应与自吸滚动修正
 ═══════════════════════════════════════════════════════ */
+:root {
+  --full-h: 100dvh; /* 动态视口高度，自动处理移动端地址栏 */
+}
+
 html, body {
-  overflow: hidden !important;
+  /* 必须移除 overflow: hidden 才能激活原生滚动自吸 */
+  overflow-y: auto !important; 
+  overflow-x: hidden;
   height: 100% !important;
-  overscroll-behavior: none;
-  touch-action: none;
+  /* 开启垂直方向强制自吸 */
+  scroll-snap-type: y mandatory; 
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+#scroll-wrap {
+  width: 100%;
+  /* 移除原有的 transform 冲突，由系统原生处理滚动 */
+  transform: none !important; 
+  transition: none !important;
 }
 
 .page {
-  height: 100dvh;
-  height: -webkit-fill-available;
-  min-height: 0 !important;
-  max-height: 100dvh;
-  overflow: hidden;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  /* 核心修正：最小高度 100dvh，但允许内容超过一屏 */
+  min-height: var(--full-h); 
+  height: auto; 
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* 设置自吸停靠点为顶部 */
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  
+  box-sizing: border-box;
+  padding: 80px 24px; /* 为移动端留出足够的上下间距 */
+  position: relative;
+  overflow: visible; /* 允许内部长内容显示 */
 }
 
-#heroCanvas {
-  position: absolute;
-  inset: 0;
-  width: 100% !important;
-  height: 100% !important;
-}
-
-@supports (padding-top: env(safe-area-inset-top)) {
-  nav {
-    padding-top: env(safe-area-inset-top);
-    height: calc(var(--nav-h) + env(safe-area-inset-top));
+/* 针对手机端的微调 */
+@media (max-width: 768px) {
+  .page {
+    justify-content: flex-start; /* 内容靠上，防止长内容居中导致顶部被遮挡 */
+    padding-top: 100px;
   }
-  .contact-page footer {
-    padding-bottom: max(0px, env(safe-area-inset-bottom));
-    height: calc(var(--footer-h) + env(safe-area-inset-bottom));
-  }
-}
-
-@media (max-width: 360px) {
-  .hero-slogan-line1, .hero-slogan-line2 { font-size: clamp(26px, 7.5vw, 38px); }
-  .sec-title { font-size: 20px; }
-  .svc-card { padding: 18px 14px; }
-}
-
-@media (max-height: 500px) and (orientation: landscape) {
-  :root { --nav-h: 48px; }
-  .sec-inner { padding-top: calc(var(--nav-h) + 8px); padding-bottom: 8px; }
-  .hero-slogan-line1, .hero-slogan-line2 { font-size: clamp(22px, 4vh, 42px); }
-  .services-grid { gap: 1px; }
-  .svc-card { padding: 10px 12px; }
-  .svc-items li { font-size: 11px; }
-  .case-card { padding: 12px 16px; }
-  footer { height: 44px; padding: 0 16px; }
-}
-
-@media (min-width: 1440px) {
-  .sec-inner { max-width: 1320px; }
 }

@@ -531,50 +531,65 @@ footer{
 }
 
 /* ═══════════════════════════════════════════════════════
-   布局调整：从全屏翻页改为常规滚动
+   移动端完美自适应：纵向自然滚动补丁
 ═══════════════════════════════════════════════════════ */
 html, body {
-  /* 允许滚动，并移除强制一屏限制 */
+  /* 允许自然滚动 */
   overflow-x: hidden !important;
-  overflow-y: auto !important; 
+  overflow-y: auto !important;
   height: auto !important;
-  overscroll-behavior: auto; /* 恢复默认滚动行为 */
-  touch-action: auto;        /* 允许触摸滚动 */
-  scroll-behavior: smooth;   /* 开启平滑滚动效果 */
+  /* 恢复触摸惯性滚动 */
+  -webkit-overflow-scrolling: touch;
+  touch-action: auto !important;
+  scroll-behavior: smooth; /* 开启锚点平滑跳转 */
 }
 
-/* 页面容器不再锁定高度 */
 #scroll-wrap {
-  transform: none !important; /* 禁用 JS 引擎的位移 */
+  /* 彻底禁用原翻页引擎的位移干扰 */
+  transform: none !important;
   transition: none !important;
   height: auto !important;
-  display: block;
+  display: block !important;
 }
 
 .page {
-  /* 每一块至少占满一屏，但高度随内容自动撑开 */
+  /* 每一块不再锁定高度，改为最小一屏 */
   height: auto !important;
   min-height: 100vh;
   min-height: 100dvh;
   max-height: none !important;
   overflow: visible !important;
   position: relative;
-  /* 增加内边距，防止内容紧贴边缘 */
-  padding-top: var(--nav-h);
-  padding-bottom: 40px;
-  box-sizing: border-box;
+  /* 为固定导航栏留出空间 */
+  padding-top: var(--nav-h); 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* 针对移动端的特殊优化 */
+/* 移动端细调 */
 @media (max-width: 768px) {
-  .section-content {
-    padding: 60px 20px;
-    height: auto;
-  }
+  :root { --nav-h: 60px; }
   
-  /* 确保背景 Canvas 作为底层固定背景 */
+  .section-content {
+    padding: 40px 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* 背景 Canvas 固定为全屏背景 */
   #heroCanvas {
     position: fixed !important;
+    top: 0; left: 0;
+    width: 100vw !important;
+    height: 100vh !important;
     z-index: -1;
+  }
+
+  /* 导航栏在移动端建议固定，方便随时跳转 */
+  nav {
+    position: fixed !important;
+    background: rgba(0, 38, 20, 0.95) !important;
+    backdrop-filter: blur(10px);
   }
 }

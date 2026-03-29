@@ -67,6 +67,7 @@ button{cursor:pointer;border:none;background:none;font:inherit}
   top:0;left:0;
   width:100%;
   will-change:transform;
+  z-index:1;          /* 明确低于 nav/overlay */
 }
 .page{
   will-change:auto;
@@ -79,7 +80,7 @@ nav{
   position:fixed;
   top:0;left:0;right:0;
   height:var(--nav-h);
-  z-index:200;
+  z-index:1600;                          /* 高于 overlay(1500) */
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -130,7 +131,9 @@ nav.scrolled{height:56px;background:rgba(0,38,20,0.96)}
 /* 汉堡 */
 .hamburger{
   display:none;flex-direction:column;justify-content:space-between;
-  width:26px;height:18px;z-index:210;
+  width:26px;height:18px;z-index:1600;
+  touch-action:manipulation;   /* iOS 点击不延迟 */
+  -webkit-tap-highlight-color:transparent;
 }
 .hamburger span{
   display:block;width:100%;height:2px;
@@ -143,12 +146,23 @@ nav.scrolled{height:56px;background:rgba(0,38,20,0.96)}
 
 /* 移动端全屏菜单 */
 .mobile-overlay{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,20,10,.97);backdrop-filter:blur(20px);
-  z-index:190;flex-direction:column;align-items:center;justify-content:center;
-  opacity:0;pointer-events:none;transition:opacity .3s;
+  display:flex;                          /* 始终 flex，用 visibility 控制显隐 */
+  position:fixed;inset:0;
+  background:rgba(0,20,10,.97);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  z-index:1500;                          /* 高于 nav(200) 和页脚 */
+  flex-direction:column;align-items:center;justify-content:center;
+  opacity:0;
+  visibility:hidden;                     /* 替代 display:none，支持 transition */
+  pointer-events:none;
+  transition:opacity .3s ease, visibility .3s ease;
 }
-.mobile-overlay.open{opacity:1;pointer-events:all}
+.mobile-overlay.open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:all;
+}
 .mobile-overlay ul{list-style:none;text-align:center}
 .mobile-overlay li{border-bottom:1px solid var(--c-border)}
 .mobile-overlay li:first-child{border-top:1px solid var(--c-border)}
@@ -156,6 +170,8 @@ nav.scrolled{height:56px;background:rgba(0,38,20,0.96)}
   display:block;padding:22px 40px;font-size:20px;
   color:rgba(255,255,255,.8);letter-spacing:.12em;
   transition:color .2s;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
 }
 .mobile-overlay a:hover,.mobile-overlay a:active{color:var(--c-gold)}
 
@@ -495,26 +511,88 @@ footer{
    RESPONSIVE — MOBILE ≤768px
 ═══════════════════════════════════════════════════════ */
 @media(max-width:768px){
-  :root{--nav-h:60px;--footer-h:60px}
+  :root{--nav-h:60px;--footer-h:56px}   /* footer 56px — 3行紧凑 */
   nav{padding:0 18px}
   .nav-links{display:none}
   .hamburger{display:flex}
 
-  .sec-inner{padding:calc(var(--nav-h) + 12px) 18px 16px}
+  /* ── Shared section ── */
+  .sec-inner{padding:calc(var(--nav-h) + 10px) 16px 14px}
 
+  /* ── Hero ── */
   .hero-line1,.hero-line2{font-size:clamp(30px,8vw,52px)}
   .hero-cta{flex-direction:column;align-items:stretch;max-width:280px;margin:0 auto}
 
-  .services-grid{grid-template-columns:1fr}
-  .cases-grid{grid-template-columns:1fr;gap:10px}
-  .case-card{grid-template-columns:1fr;gap:12px;padding:20px}
+  /* ── Services: 2列紧凑 ── */
+  .services-grid{grid-template-columns:repeat(2,1fr);gap:1px}
+  .svc-card{padding:12px 10px}
+  .svc-num{font-size:20px;margin-bottom:2px}
+  .svc-en{font-size:8px;margin-bottom:2px}
+  .svc-title{font-size:12px;margin-bottom:5px}
+  .svc-items{gap:3px}
+  .svc-items li{font-size:10.5px;line-height:1.35;padding-left:10px}
+  .sec-sub{margin-bottom:8px;font-size:12px}
+  .sec-divider{margin-bottom:10px}
 
-  .contact-inner{grid-template-columns:1fr;gap:24px}
-  .form-wrap{padding:24px 18px}
+  /* ── Cases: 2列紧凑 ── */
+  .cases-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .case-card{grid-template-columns:1fr;gap:6px;padding:14px 12px}
+  .case-icon{width:36px;height:36px;font-size:18px;border-radius:6px}
+  .case-cat{font-size:8.5px}
+  .case-title{font-size:13px;margin-bottom:5px}
+  .case-desc{font-size:11.5px;line-height:1.55}
 
-  footer{height:auto;min-height:var(--footer-h);flex-direction:column;gap:4px;text-align:center;padding:8px 18px;justify-content:center}
-  .footer-motto{font-size:11px;padding:0;letter-spacing:.06em}
-  .footer-copy{font-size:10px;white-space:normal;text-align:center}
+  /* ── Contact: 可内部滚动,内容完全可见 ── */
+  .contact-inner{grid-template-columns:1fr;gap:14px}
+  .contact-page .sec-inner{
+    overflow-y:scroll;            /* 启用内部滚动 */
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    /* 精确高度: page高度 - 顶部padding - 底部footer留白 */
+    max-height:calc(100dvh - var(--nav-h) - var(--footer-h));
+    justify-content:flex-start;  /* 顶对齐,内容多时向下延伸 */
+    padding-top:calc(var(--nav-h) + 10px);
+    padding-bottom:0;             /* footer通过外部absolute定位 */
+  }
+  .contact-page .sec-inner::-webkit-scrollbar{display:none}
+
+  /* Contact 文字紧凑 */
+  .contact-title{font-size:20px;margin-bottom:4px}
+  .contact-en{font-size:22px;margin-bottom:10px}
+  .contact-desc{display:none}   /* 移动端隐藏介绍文字,节省高度 */
+
+  /* Contact info: 2列网格 */
+  .contact-info{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:8px;margin-bottom:0;
+  }
+  .ci{gap:8px}
+  .ci-icon{width:28px;height:28px;font-size:13px;border-radius:3px}
+  .ci-label{font-size:8.5px;margin-bottom:1px}
+  .ci-val{font-size:11.5px}
+
+  /* Form 紧凑 */
+  .form-wrap{padding:12px 12px 14px;border-radius:4px}
+  .form-title{font-size:13px;margin-bottom:10px}
+  .fg{margin-bottom:8px}
+  .fg label{font-size:9.5px;margin-bottom:3px}
+  .fg input,.fg textarea{padding:8px 10px;font-size:14px}
+  .fg textarea{min-height:52px}
+  .btn-submit{padding:10px;font-size:14px;margin-top:2px}
+
+  /* ── Footer: 3行紧凑,绝对定位不挡内容 ── */
+  footer{
+    height:var(--footer-h);
+    flex-direction:column;
+    gap:1px;
+    padding:4px 14px;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+  }
+  .footer-brand .nav-logo-icon{width:18px;height:18px}
+  .footer-motto{font-size:10px;padding:0;letter-spacing:.05em;line-height:1.2}
+  .footer-copy{font-size:9px;white-space:normal;text-align:center;line-height:1.2}
   .footer-brand{justify-content:center}
 }
 
@@ -567,8 +645,8 @@ html, body {
     height: calc(var(--nav-h) + env(safe-area-inset-top));
   }
   .contact-page footer {
-    padding-bottom: max(0px, env(safe-area-inset-bottom));
     height: calc(var(--footer-h) + env(safe-area-inset-bottom));
+    padding-bottom: env(safe-area-inset-bottom);
   }
 }
 
@@ -617,56 +695,9 @@ input, textarea, select {
   -webkit-user-select: text;
 }
 
-/* ═══════════════════════════════════════════════════════
-   MOBILE SERVICES & CASES — 2列紧凑布局适配一屏
-═══════════════════════════════════════════════════════ */
-@media (max-width: 768px) {
-  /* Services: 2列 */
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-  }
-  .svc-card { padding: 14px 12px; }
-  .svc-num { font-size: 22px; margin-bottom: 4px; }
-  .svc-en { font-size: 8.5px; margin-bottom: 3px; }
-  .svc-title { font-size: 13px; margin-bottom: 6px; }
-  .svc-items { gap: 4px; }
-  .svc-items li { font-size: 11px; line-height: 1.4; }
-  .sec-sub { margin-bottom: 12px; font-size: 12px; }
-  .sec-divider { margin-bottom: 14px; }
-
-  /* Cases: 2列 */
-  .cases-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-  .case-card {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    padding: 16px 14px;
-  }
-  .case-icon {
-    width: 40px; height: 40px;
-    font-size: 20px;
-  }
-  .case-title { font-size: 13px; margin-bottom: 6px; }
-  .case-cat { font-size: 9px; }
-  .case-desc { font-size: 11.5px; line-height: 1.6; }
-
-  /* Contact page 内部滚动以适应小屏 */
-  .contact-page .sec-inner {
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .contact-page .sec-inner::-webkit-scrollbar { display: none; }
-}
-
-/* 超小屏 (≤480px) services 也保持2列 */
+/* ── 超小屏 ≤480px 追加压缩 ── */
 @media (max-width: 480px) {
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
-  .svc-card { padding: 10px 8px; }
   .svc-en { display: none; }
-  .svc-items li { font-size: 10.5px; }
-  .cases-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .case-desc { display: none; }
+  .contact-en { font-size: 18px; }
 }

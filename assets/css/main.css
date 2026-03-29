@@ -1,3 +1,15 @@
+/* 强制禁止非输入框的编辑行为和点击高亮 */
+* {
+  -webkit-tap-highlight-color: transparent; /* 移除点击时的灰色背板 */
+  -webkit-user-modify: read-only !important; /* 核心：禁止 Webkit 内核将标签变为可读写 */
+  user-select: none; /* 防止长按选中文本引发的输入感 */
+}
+
+/* 排除掉真正的输入框，否则表单会失效 */
+input, textarea, [contenteditable="true"] {
+  -webkit-user-modify: read-write !important;
+  user-select: text !important;
+}
 /* ═══════════════════════════════════════════════════════
    DESIGN TOKENS
 ═══════════════════════════════════════════════════════ */

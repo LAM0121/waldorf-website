@@ -526,48 +526,56 @@ footer{
 }
 
 /* ═══════════════════════════════════════════════════════
-   全设备自适应与原生自吸滚动修正
+   修正：启用原生滚动自吸，解决翻页卡死问题
 ═══════════════════════════════════════════════════════ */
-:root {
-  /* 使用 dvh 解决移动端浏览器工具栏变动导致的高度跳动 */
-  --full-h: 100dvh; 
-}
-
 html, body {
-  /* 必须移除 overflow: hidden 才能激活原生滚动自吸 */
+  /* 必须允许 overflow-y 滚动，否则 scroll-snap 不起作用 */
   overflow-y: auto !important; 
   overflow-x: hidden;
   height: 100% !important;
-  /* 开启垂直方向强制捕捉，由系统内核处理，比 JS 模拟更丝滑 */
+  
+  /* 启用垂直方向强制自吸 */
   scroll-snap-type: y mandatory; 
   scroll-behavior: smooth;
+  
+  /* 关键：允许触摸移动，不要设置 touch-action: none */
+  touch-action: pan-y; 
   -webkit-overflow-scrolling: touch;
 }
 
 #scroll-wrap {
-  width: 100%;
-  /* 彻底废弃旧版 JS 驱动的位移 */
+  /* 彻底禁用旧版 JS 的位移干扰，防止页面被钉死 */
   transform: none !important; 
   transition: none !important;
+  width: 100%;
+  display: block;
 }
 
 .page {
-  /* 核心：最小高度 100dvh，但允许被长内容撑开（解决移动端显示不全） */
-  min-height: var(--full-h); 
-  height: auto; 
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  /* 设置自吸停靠点为顶部 */
+  /* 自吸对齐点 */
   scroll-snap-align: start;
-  /* 即使快速滑动也确保停留在某一页 */
   scroll-snap-stop: always;
   
-  box-sizing: border-box;
-  padding: 80px 24px; 
+  /* 适应多设备高度 */
+  min-height: 100dvh; 
+  height: auto; 
+  width: 100%;
+  
+  /* 确保页面内的交互（如点击）不被拦截 */
+  pointer-events: auto !important; 
   position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
 }
 
+/* 修正 Canvas 背景层级，确保不遮挡内容点击 */
+#heroCanvas {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
 /* 移动端特殊适配：内容靠顶展示，防止居中导致顶部文字被遮挡 */
 @media (max-width: 768px) {
   .page {

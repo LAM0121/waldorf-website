@@ -5,46 +5,45 @@
  */
 (function () {
   'use strict';
+  const PAGES = document.querySelectorAll('.page');
+  const NAV_LINKS = document.querySelectorAll('a[data-page]');
 
-  const PAGES     = Array.from(document.querySelectorAll('.page'));
-  const NAV_LINKS = Array.from(document.querySelectorAll('a[data-page]'));
-  const PROG      = document.getElementById('progress-bar');
-  const NAV_EL    = document.getElementById('main-nav');
-  const WRAP      = document.getElementById('scroll-wrap');
+  // 1. 自动高亮当前页面的导航栏
+  const observerOptions = {
+    threshold: 0.5 // 当页面进入视口 50% 时切换状态
+  };
 
-  let cur = 0, locked = false;
-  const ANIM_MS = 750;   // 翻页动画时长 (ms)
-  const LOCK_MS = 800;   // 锁定时间 (ms)
-  const EASE    = 'cubic-bezier(0.77,0,0.175,1)';
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const index = Array.from(PAGES).indexOf(entry.target);
+        updateActiveNav(index);
+      }
+    });
+  }, observerOptions);
 
-  /** 精准视口高度（排除地址栏） */
-  function vh() {
-    return window.visualViewport ? window.visualViewport.height : window.innerHeight;
+  PAGES.forEach(page => observer.observe(page));
+
+  function updateActiveNav(index) {
+    NAV_LINKS.forEach((link, i) => {
+      link.classList.toggle('active', i === index);
+    });
+    // 更新进度条
+    const prog = document.getElementById('progress-bar');
+    if (prog) prog.style.transform = `scaleX(${(index + 1) / PAGES.length})`;
   }
 
-  /** 无动画定位 */
-  function snapTo(i) {
-    WRAP.style.transition = 'none';
-    WRAP.style.transform  = `translateY(${-i * vh()}px)`;
-  }
-
-  /** 翻页（带动画） */
-  function goTo(i, instant) {
-    if (i < 0 || i >= PAGES.length) return;
-    if (locked && !instant) return;
-    locked = true;
-    cur = i;
-
-    const offset = -i * vh();
-    if (instant) {
-      WRAP.style.transition = 'none';
-      WRAP.style.transform  = `translateY(${offset}px)`;
-      locked = false;
-    } else {
-      WRAP.style.transition = `transform ${ANIM_MS}ms ${EASE}`;
-      WRAP.style.transform  = `translateY(${offset}px)`;
-      setTimeout(() => { locked = false; }, LOCK_MS);
-    }
+  // 2. 点击导航平滑滚动
+  NAV_LINKS.forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const idx = parseInt(a.dataset.page);
+      if (PAGES[idx]) {
+        PAGES[idx].scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+})();
 
     // 进度条
     if (PROG) PROG.style.width = (((i + 1) / PAGES.length) * 100) + '%';

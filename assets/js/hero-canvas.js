@@ -32,9 +32,18 @@
   setInterval(() => { targetTransition = targetTransition === 0 ? 1 : 0; }, 8000);
 
   function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
+  // 获取设备像素比（Retina 屏通常为 2 或 3）
+  const dpr = window.devicePixelRatio || 1;
+  W = window.innerWidth;
+  H = window.innerHeight;
+  
+  // 设置 Canvas 物理像素
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  
+  // 缩放上下文，让后续绘制代码依然使用逻辑像素坐标
+  ctx.scale(dpr, dpr);
+}
   window.addEventListener('resize', resize, { passive: true });
   resize();
 

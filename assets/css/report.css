@@ -324,3 +324,13 @@ nav {
 @media (max-width: 968px) {
   .database-grid { grid-template-columns: 1fr; }
 }
+
+/* 确保移动端数据中心表格不会挤压 */
+.data-table-container {
+  width: 100%;
+  overflow-x: auto !important; 
+  -webkit-overflow-scrolling: touch;
+}
+.data-table {
+  min-width: 650px; /* 强制触发容器滚动，保护数据美观 */
+}

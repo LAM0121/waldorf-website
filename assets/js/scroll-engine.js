@@ -112,25 +112,61 @@
 
   // ── 触摸（手机/平板）────────────────────────────────────
   let ty = 0, tx = 0, ttime = 0, moved = false;
+  let touchTarget = null;   // 记录 touchstart 的目标元素
+  let innerScrollStart = 0; // 手指按下时 inner 的 scrollTop
+
+  /** 返回目标元素所在的可内部滚动容器（若存在） */
+  function getScrollInner(el) {
+    if (!el || typeof el.closest !== 'function') return null;
+    const inner = el.closest('.contact-page .sec-inner');
+    if (inner && inner.scrollHeight > inner.clientHeight + 2) return inner;
+    return null;
+  }
+
   window.addEventListener('touchstart', e => {
     ty    = e.touches[0].clientY;
     tx    = e.touches[0].clientX;
     ttime = Date.now();
     moved = false;
+    touchTarget = e.target;
+    const inner = getScrollInner(touchTarget);
+    innerScrollStart = inner ? inner.scrollTop : 0;
   }, { passive: true });
 
   window.addEventListener('touchmove', e => {
     moved = true;
+    const inner = getScrollInner(touchTarget);
+    if (inner) {
+      // 手动驱动 inner 滚动（保持 preventDefault 阻止页面级翻转）
+      const totalDY = ty - e.touches[0].clientY;
+      inner.scrollTop = Math.max(0,
+        Math.min(innerScrollStart + totalDY,
+                 inner.scrollHeight - inner.clientHeight));
+      e.preventDefault();
+      return;
+    }
     e.preventDefault();
   }, { passive: false });
 
   window.addEventListener('touchend', e => {
     if (!moved || locked) return;
-    const dy = ty - e.changedTouches[0].clientY;
+    const dy = ty - e.changedTouches[0].clientY; // 总位移（正=向上滑）
     const dx = tx - e.changedTouches[0].clientX;
     const dt = Date.now() - ttime;
-    if (Math.abs(dy) < Math.abs(dx) * 1.2) return; // 以垂直为主才触发
-    const fast = Math.abs(dy) > 20 && dt < 350;    // 快速轻扫：降低阈值
+
+    // 若在内部滚动容器内，只在触达边界时才翻页
+    const inner = getScrollInner(touchTarget);
+    if (inner) {
+      const atTop    = inner.scrollTop <= 2;
+      const atBottom = inner.scrollTop >= inner.scrollHeight - inner.clientHeight - 2;
+      // 向上滑(dy>0) 但 inner 未到底 → 不翻页
+      if (dy > 0 && !atBottom) return;
+      // 向下滑(dy<0) 但 inner 未到顶 → 不翻页
+      if (dy < 0 && !atTop) return;
+    }
+
+    if (Math.abs(dy) < Math.abs(dx) * 1.2) return; // 横向滑动忽略
+    const fast = Math.abs(dy) > 20 && dt < 350;    // 快速轻扫
     const slow = Math.abs(dy) > 45;                 // 慢速重划
     if (!fast && !slow) return;
     goTo(dy > 0 ? cur + 1 : cur - 1);

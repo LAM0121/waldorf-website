@@ -24,6 +24,11 @@
 /* ═══════════════════════════════════════════════════════
    RESET & BASE
 ═══════════════════════════════════════════════════════ */
+/* 移除点击时的默认蓝色边框（除非是真正的输入框） */
+*:focus {
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent; /* 移除移动端点击的高亮背板 */
+}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{
   font-size:16px;

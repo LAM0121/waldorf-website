@@ -27,6 +27,7 @@ exclude:
 # 静态文件直通（GitHub Pages 默认会忽略下划线开头目录）
 include:
   - assets/
+include: [assets]
 
 # 关闭 Sass 处理（我们使用纯 CSS）
 sass:

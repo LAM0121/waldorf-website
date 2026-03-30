@@ -118,7 +118,7 @@
   /** 返回目标元素所在的可内部滚动容器（若存在） */
   function getScrollInner(el) {
     if (!el || typeof el.closest !== 'function') return null;
-    const inner = el.closest('.contact-page .sec-inner');
+    const inner = el.closest('.contact-page .sec-inner, .cases-page .sec-inner');
     if (inner && inner.scrollHeight > inner.clientHeight + 2) return inner;
     return null;
   }

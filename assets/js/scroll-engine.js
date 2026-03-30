@@ -6,11 +6,13 @@
 (function () {
   'use strict';
 
+  const WRAP      = document.getElementById('scroll-wrap');
+  if (!WRAP) return;   // 不在首页则静默退出
+
   const PAGES     = Array.from(document.querySelectorAll('.page'));
   const NAV_LINKS = Array.from(document.querySelectorAll('a[data-page]'));
   const PROG      = document.getElementById('progress-bar');
   const NAV_EL    = document.getElementById('main-nav');
-  const WRAP      = document.getElementById('scroll-wrap');
 
   let cur = 0, locked = false;
   const ANIM_MS = 650;   // 翻页动画时长 (ms)

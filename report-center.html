@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>投后管理数据库 - 上海卫道夫投资管理</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="shortcut icon" href="favicon.svg">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/report.css">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9FPCQK3QVC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9FPCQK3QVC');
+  </script>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo" aria-label="返回首页">
+      <svg class="nav-logo-icon" viewBox="0 0 480 620" aria-hidden="true" focusable="false">
+        <path d="M95 105 Q240 85 385 105 V375 C385 460 240 525 240 525 C240 525 95 460 95 375 Z" fill="#0F6F4A" stroke="#C9B037" stroke-width="6"/>
+        <text x="240" y="162" text-anchor="middle" font-family="Georgia,serif" font-size="36" font-weight="700" letter-spacing="4.8" fill="#C9B037">WALDORF</text>
+        <text x="240" y="420" text-anchor="middle" font-family="Georgia,serif" font-size="13.5" letter-spacing="2.4" fill="#C9B037">ORDO • FIDES • TEMPUS</text>
+        <rect x="212" y="185" width="56" height="160" fill="#C9B037"/>
+        <rect x="152" y="210" width="40" height="135" fill="#C9B037"/>
+        <rect x="288" y="210" width="40" height="135" fill="#C9B037"/>
+        <text x="172" y="370" text-anchor="middle" font-family="Microsoft YaHei,sans-serif" font-size="12" fill="#C9B037">秩序</text>
+        <text x="242" y="370" text-anchor="middle" font-family="Microsoft YaHei,sans-serif" font-size="12" fill="#C9B037">信仰</text>
+        <text x="308" y="370" text-anchor="middle" font-family="Microsoft YaHei,sans-serif" font-size="12" fill="#C9B037">可持续</text>
+      </svg>
+      <div class="nav-logo-text">
+        <span class="nav-logo-cn">上海卫道夫投资管理有限公司</span>
+      </div>
+    </a>
+    <a href="index.html" class="nav-back">返回首页</a>
+  </nav>
+
+  <div class="container">
+
+    <!-- ── 登录面板 ── -->
+    <div class="login-section" id="loginSection">
+      <h1 class="login-title">投后管理数据库</h1>
+      <p class="login-subtitle">请登录访问投后管理系统</p>
+      <form id="loginForm">
+        <div class="form-group">
+          <label class="form-label">用户名</label>
+          <input type="text" class="form-input" id="username" placeholder="请输入用户名" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label class="form-label">密码</label>
+          <input type="password" class="form-input" id="password" placeholder="请输入密码" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn-login">登录</button>
+        <p class="error-message" id="errorMessage">用户名或密码错误</p>
+      </form>
+    </div>
+
+    <!-- ── 数据库面板 ── -->
+    <div class="database-section" id="databaseSection">
+      <div class="page-header">
+        <h1 class="page-title">投后管理数据库</h1>
+        <p class="page-subtitle">全面的投资项目跟踪与管理系统</p>
+      </div>
+
+      <div class="user-info">
+        <span id="currentUser">欢迎，用户</span>
+        <button class="btn-logout" id="logoutBtn">退出登录</button>
+      </div>
+
+      <div class="database-grid">
+        <div class="db-card">
+          <span class="db-icon">📊</span>
+          <h3 class="db-title">投资项目库</h3>
+          <p class="db-description">管理所有投资项目的基本信息、投资金额、持股比例等核心数据</p>
+          <div class="db-stats">
+            <div><span class="db-stat-value">127</span><span class="db-stat-label">项目总数</span></div>
+            <div><span class="db-stat-value">45</span><span class="db-stat-label">活跃项目</span></div>
+          </div>
+        </div>
+        <div class="db-card">
+          <span class="db-icon">📈</span>
+          <h3 class="db-title">财务数据库</h3>
+          <p class="db-description">记录和分析各项目的财务报表、收益数据、现金流等关键财务指标</p>
+          <div class="db-stats">
+            <div><span class="db-stat-value">1,542</span><span class="db-stat-label">财务记录</span></div>
+            <div><span class="db-stat-value">Q4</span><span class="db-stat-label">最新季度</span></div>
+          </div>
+        </div>
+        <div class="db-card">
+          <span class="db-icon">⚠️</span>
+          <h3 class="db-title">风险监控库</h3>
+          <p class="db-description">实时跟踪风险事件、预警信息、合规检查等风险管理数据</p>
+          <div class="db-stats">
+            <div><span class="db-stat-value">23</span><span class="db-stat-label">风险事件</span></div>
+            <div><span class="db-stat-value">5</span><span class="db-stat-label">待处理</span></div>
+          </div>
+        </div>
+        <div class="db-card">
+          <span class="db-icon">🏛️</span>
+          <h3 class="db-title">治理数据库</h3>
+          <p class="db-description">管理公司治理结构、董事会信息、重大决策等治理相关数据</p>
+          <div class="db-stats">
+            <div><span class="db-stat-value">89</span><span class="db-stat-label">治理记录</span></div>
+            <div><span class="db-stat-value">12</span><span class="db-stat-label">本月会议</span></div>
+          </div>
+        </div>
+        <div class="db-card">
+          <span class="db-icon">📝</span>
+          <h3 class="db-title">报告文档库</h3>
+          <p class="db-description">存储和管理各类投后管理报告、尽调报告、审计报告等文档</p>
+          <div class="db-stats">
+            <div><span class="db-stat-value">456</span><span class="db-stat-label">文档总数</span></div>
+            <div><span class="db-stat-value">28</span><span class="db-stat-label">本月新增</span></div>
+          </div>
+        </div>
+        <div class="db-card">
+          <span class="db-icon">👥</span>
+          <h3 class="db-title">人员信息库</h3>
+          <p class="db-description">维护被投企业管理层、关键人员、联系方式等人员信息</p>
+          <div class="db-stats">
+            <div><span class="db-stat-value">342</span><span class="db-stat-label">人员记录</span></div>
+            <div><span class="db-stat-value">67</span><span class="db-stat-label">核心团队</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="data-table-container">
+        <div class="table-header">
+          <h2 class="table-title">近期投资项目</h2>
+          <button class="btn-add">+ 新增项目</button>
+        </div>
+        <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>项目名称</th>
+                <th>行业</th>
+                <th>投资金额</th>
+                <th>投资日期</th>
+                <th>状态</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>华东物流供应链项目</td>
+                <td>物流运输</td>
+                <td>¥5,000万</td>
+                <td>2024-03-15</td>
+                <td><span class="status-badge status-active">运营中</span></td>
+              </tr>
+              <tr>
+                <td>智能制造产业园</td>
+                <td>智能制造</td>
+                <td>¥8,500万</td>
+                <td>2024-06-22</td>
+                <td><span class="status-badge status-active">运营中</span></td>
+              </tr>
+              <tr>
+                <td>绿色能源科技公司</td>
+                <td>新能源</td>
+                <td>¥12,000万</td>
+                <td>2024-08-10</td>
+                <td><span class="status-badge status-active">运营中</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div><!-- /.database-section -->
+
+  </div><!-- /.container -->
+
+  <!-- SCRIPT -->
+  <script src="assets/js/report.js"></script>
+
+</body>
+</html>

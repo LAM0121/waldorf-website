@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#006633">
 <meta name="format-detection" content="telephone=no">
-<title>上海卫道夫投资管理有限公司</title>
+<title>上海卫道夫投资管理有限公司 | WALDORF | 股权投后管理专家</title>
 <meta name="description" content="上海卫道夫投资管理有限公司（WALDORF）专注股权投后管理服务，提供尽职调查、常规管理、风险管控、决策建议与赋能服务，守护股东权益，优化公司治理。">
 <meta name="keywords" content="卫道夫,Waldorf,上海卫道夫,上海卫道夫投资管理,上海卫道夫投资管理有限公司,股权投后管理,投后管理,PE投后,公司治理,风险管控">
 <meta name="author" content="上海卫道夫投资管理有限公司">
@@ -263,7 +263,9 @@ nav.scrolled{height:56px;background:rgba(0,38,20,0.96)}
 .scroll-hint{
   position:absolute;
   bottom:20px;
-  left:50%;transform:translateX(-50%);
+  left:0; right:0;               /* 撑满宽度 */
+  margin:0 auto;                 /* 不依赖 transform 居中 */
+  width:max-content;             /* 收缩至内容宽 */
   display:flex;flex-direction:column;align-items:center;gap:6px;
   opacity:0;animation:fadeUp .8s var(--ease) 1.8s both;
   cursor:pointer;z-index:2;
@@ -1519,14 +1521,6 @@ input, textarea, select {
   gtag('js', new Date());
   gtag('config', 'G-9FPCQK3QVC');
 </script>
-
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "w3ppixwkef");
-</script>
 </head>
 <body>
 
@@ -1626,16 +1620,16 @@ input, textarea, select {
         </div>
       </div>
 
-      <!-- 02 经营秩序 -->
+      <!-- 02 运营秩序 -->
       <div class="svc-card" data-bg="assets/img/svc-02.jpg">
         <div class="svc-img">
-          <img src="assets/img/svc-02.jpg" alt="经营秩序"
+          <img src="assets/img/svc-02.jpg" alt="运营秩序"
                onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80'">
         </div>
         <div class="svc-body">
           <div class="svc-header">
             <span class="svc-num">02 /</span>
-            <span class="svc-title-cn">经营秩序</span>
+            <span class="svc-title-cn">运营秩序</span>
             <span class="svc-title-en">Operational Order</span>
           </div>
           <div class="svc-divider"></div>
@@ -1663,16 +1657,16 @@ input, textarea, select {
         </div>
       </div>
 
-      <!-- 03 收益回报 -->
+      <!-- 03 收益实现 -->
       <div class="svc-card" data-bg="assets/img/svc-03.jpg">
         <div class="svc-img">
-          <img src="assets/img/svc-03.jpg" alt="收益回报"
+          <img src="assets/img/svc-03.jpg" alt="收益实现"
                onerror="this.src='https://images.unsplash.com/photo-1451187530220-4e2a13505ad4?auto=format&fit=crop&w=800&q=80'">
         </div>
         <div class="svc-body">
           <div class="svc-header">
             <span class="svc-num">03 /</span>
-            <span class="svc-title-cn">收益回报</span>
+            <span class="svc-title-cn">收益实现</span>
             <span class="svc-title-en">Return Realization</span>
           </div>
           <div class="svc-divider"></div>
@@ -1777,7 +1771,7 @@ input, textarea, select {
         <div class="contact-info">
           <div class="ci"><div class="ci-icon" aria-hidden="true">🌐</div><div><div class="ci-label">官方网站</div><div class="ci-val">www.waldorf.work</div></div></div>
           <div class="ci"><div class="ci-icon" aria-hidden="true">📍</div><div><div class="ci-label">公司地址</div><div class="ci-val">中国 · 上海</div></div></div>
-          <div class="ci"><div class="ci-icon" aria-hidden="true">📧</div><div><div class="ci-label">商务合作</div><div class="ci-val">vip@waldorf.work</div></div></div>
+          <div class="ci"><div class="ci-icon" aria-hidden="true">📧</div><div><div class="ci-label">商务合作</div><div class="ci-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3e575058517e495f525a514c581049514c55">[email&#160;protected]</a></div></div></div>
           <div class="ci"><div class="ci-icon" aria-hidden="true">💬</div><div><div class="ci-label">企业微信</div><div class="ci-val ci-trigger" id="wechat-trigger" role="button" tabindex="0" aria-haspopup="dialog">点击查看企业微信二维码</div></div></div>
         </div>
       </div>

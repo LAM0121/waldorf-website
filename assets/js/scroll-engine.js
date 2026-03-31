@@ -98,17 +98,34 @@
     window.addEventListener('resize', onResize, { passive: true });
   }
 
-  // ── 滚轮（桌面）—— deltaY 累积防抖 ─────────────────────
-  let wheelAccum = 0, wheelTimer;
+  // ── 滚轮（桌面 + 触摸板）── 手势级单次触发 ─────────────
+  // 触摸板一次手势发出大量连续事件；用 wheelFired 标志确保
+  // 每个手势（300ms 内无新事件视为手势结束）只翻一页。
+  let wheelAccum = 0;
+  let wheelFired = false;   // 本次手势是否已翻页
+  let wheelEndTimer;
+
   window.addEventListener('wheel', e => {
     e.preventDefault();
-    if (locked) return;
+
+    // 手势结束计时：300ms 无新事件 → 重置，允许下一次翻页
+    clearTimeout(wheelEndTimer);
+    wheelEndTimer = setTimeout(() => {
+      wheelFired = false;
+      wheelAccum = 0;
+    }, 300);
+
+    // 本次手势已翻页 或 正在动画中 → 忽略后续事件
+    if (wheelFired || locked) return;
+
     wheelAccum += e.deltaY;
-    clearTimeout(wheelTimer);
-    wheelTimer = setTimeout(() => { wheelAccum = 0; }, 80);
-    if (Math.abs(wheelAccum) < 50) return;
+
+    // 阈值：鼠标滚轮通常 ≥ 100，触摸板需累积到 60 才触发
+    if (Math.abs(wheelAccum) < 60) return;
+
     const dir = wheelAccum > 0 ? 1 : -1;
     wheelAccum = 0;
+    wheelFired = true;   // 锁定本手势，不再翻第二页
     goTo(cur + dir);
   }, { passive: false });
 

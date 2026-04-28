@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#006633">
+<meta name="format-detection" content="telephone=no">
+<title>上海卫道夫投资管理有限公司</title>
+<meta name="description" content="上海卫道夫投资管理有限公司（WALDORF）专注股权投后管理服务，提供尽职调查、常规管理、风险管控、决策建议与赋能服务，守护股东权益，优化公司治理。">
+<meta name="keywords" content="卫道夫,Waldorf,上海卫道夫,上海卫道夫投资管理,上海卫道夫投资管理有限公司,股权投后管理,投后管理,PE投后,公司治理,风险管控">
+<meta name="author" content="上海卫道夫投资管理有限公司">
+<meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large">
+<link rel="canonical" href="https://www.waldorf.work/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="上海卫道夫投资管理有限公司">
+<meta property="og:title" content="上海卫道夫投资管理有限公司 | WALDORF">
+<meta property="og:description" content="专注股权投后管理，守护股东权益，优化公司治理。">
+<meta property="og:url" content="https://www.waldorf.work/">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="上海卫道夫投资管理有限公司 | WALDORF">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FinancialService","name":"上海卫道夫投资管理有限公司","alternateName":["卫道夫","Waldorf","WALDORF"],"url":"https://www.waldorf.work","description":"专注股权投后管理服务","address":{"@type":"PostalAddress","addressLocality":"上海","addressCountry":"CN"},"areaServed":"CN","serviceType":["股权投后管理","风险管控","公司治理","决策建议"]}</script>
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+
+<!-- Preconnect -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+
+<!-- Stylesheet -->
+<style>
+
+/* ═══════════════════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════════════════ */
+:root{
+  --c-bg:       #002614;
+  --c-forest:   #006633;
+  --c-mid:      #007a3d;
+  --c-gold:     #c8a84b;
+  --c-gold-l:   #e0c06e;
+  --c-gold-d:   #9a7c32;
+  --c-white:    #ffffff;
+  --c-grey:     rgba(255,255,255,0.55);
+  --c-grey-d:   rgba(255,255,255,0.25);
+  --c-border:   rgba(200,168,75,0.18);
+  --c-border-h: rgba(200,168,75,0.55);
+  --nav-h:      64px;
+  --footer-h:   64px;
+  --ease:       cubic-bezier(0.16,1,0.3,1);
+  --ease-in:    cubic-bezier(0.4,0,1,1);
+  --font-cn:    'Microsoft YaHei','微软雅黑','PingFang SC',system-ui,sans-serif;
+  --font-en:    'Segoe UI',Arial,sans-serif;
+}
+
+/* ═══════════════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════════════ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{
+  font-size:16px;
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+  height:100%;
+  overflow:hidden;
+}
+body{
+  font-family:var(--font-cn);
+  background:#002614;
+  color:var(--c-white);
+  height:100%;
+  overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img,video{max-width:100%;height:auto;display:block}
+svg{display:inline-block;overflow:hidden}           /* SVG 不设 height:auto，防止 viewBox 比例干扰 */
+img{vertical-align:middle}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+button{cursor:pointer;border:none;background:none;font:inherit}
+
+/* ═══════════════════════════════════════════════════════
+   SCROLL ENGINE
+═══════════════════════════════════════════════════════ */
+.page{
+  position:relative;
+  width:100%;
+  height:100dvh;
+  height:-webkit-fill-available;
+  overflow:hidden;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ─── Scroll wrapper ─── */
+#scroll-wrap{
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  will-change:transform;
+  z-index:1;          /* 明确低于 nav/overlay */
+}
+.page{
+  will-change:auto;
+}
+
+/* ═══════════════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════════════ */
+nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  height:var(--nav-h);
+  z-index:1600;                          /* 高于 overlay(1500) */
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 48px;
+  background:rgba(0,38,20,0.82);
+  backdrop-filter:blur(20px) saturate(1.4);
+  -webkit-backdrop-filter:blur(20px) saturate(1.4);
+  border-bottom:1px solid var(--c-border);
+  transition:height .3s var(--ease), background .3s;
+  will-change:height;
+}
+nav.scrolled{height:56px;background:rgba(0,38,20,0.96)}
+
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo-icon{width:34px;height:34px;flex-shrink:0;object-fit:contain;display:block}
+.nav-logo-text{display:flex;flex-direction:column;line-height:1.2}
+.nav-logo-en{display:none;font-size:18px;font-weight:700;color:var(--c-gold);letter-spacing:.2em}
+.nav-logo-cn{font-size:16px;color:var(--c-gold);letter-spacing:.04em;font-weight:700;line-height:1}
+
+.nav-links{display:flex;align-items:center;gap:32px}
+.nav-links a{
+  font-size:14px;color:var(--c-grey);letter-spacing:.06em;
+  position:relative;transition:color .25s;padding:4px 0;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-2px;left:0;right:0;
+  height:1px;background:var(--c-gold);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .3s var(--ease);
+}
+.nav-links a:hover,.nav-links a.active{color:var(--c-gold)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-links .nav-report{
+  padding:7px 18px;border:1px solid var(--c-border-h);
+  color:var(--c-gold);border-radius:4px;transition:all .25s;font-size:13px;
+}
+.nav-links .nav-report:hover{background:var(--c-gold);color:var(--c-forest)}
+.nav-links .nav-report::after{display:none}
+
+/* 进度条 */
+#progress-bar{
+  position:fixed;top:0;left:0;height:2px;
+  background:linear-gradient(90deg,var(--c-gold-d),var(--c-gold),var(--c-gold-l));
+  z-index:300;width:0%;transition:width .4s var(--ease);
+  box-shadow:0 0 8px rgba(200,168,75,.6);
+}
+
+/* 汉堡 */
+.hamburger{
+  display:none;flex-direction:column;justify-content:space-between;
+  width:26px;height:18px;z-index:1600;
+  touch-action:manipulation;   /* iOS 点击不延迟 */
+  -webkit-tap-highlight-color:transparent;
+}
+.hamburger span{
+  display:block;width:100%;height:2px;
+  background:var(--c-gold);border-radius:2px;
+  transition:all .3s var(--ease);transform-origin:center;
+}
+.hamburger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+/* 移动端全屏菜单 */
+.mobile-overlay{
+  display:flex;                          /* 始终 flex，用 visibility 控制显隐 */
+  position:fixed;inset:0;
+  background:rgba(0,20,10,.97);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  z-index:1500;                          /* 高于 nav(200) 和页脚 */
+  flex-direction:column;align-items:center;justify-content:center;
+  opacity:0;
+  visibility:hidden;                     /* 替代 display:none，支持 transition */
+  pointer-events:none;
+  transition:opacity .3s ease, visibility .3s ease;
+}
+.mobile-overlay.open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:all;
+}
+.mobile-overlay ul{list-style:none;text-align:center}
+.mobile-overlay li{border-bottom:1px solid var(--c-border)}
+.mobile-overlay li:first-child{border-top:1px solid var(--c-border)}
+.mobile-overlay a{
+  display:block;padding:22px 40px;font-size:20px;
+  color:rgba(255,255,255,.8);letter-spacing:.12em;
+  transition:color .2s;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+.mobile-overlay a:hover,.mobile-overlay a:active{color:var(--c-gold)}
+
+/* ═══════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════ */
+.hero{background:var(--c-bg)}          /* page已是 position:relative */
+#heroCanvas{
+  position:absolute;inset:0;width:100%;height:100%;
+  display:block;pointer-events:none;
+}
+
+/* 渐变遮罩保持不变 */
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,
+    rgba(0,38,20,.2) 0%,rgba(0,38,20,.45) 60%,rgba(0,38,20,.65) 100%);
+  pointer-events:none;
+}
+
+/* 口号区：绝对定位在页面下半部分正中 */
+.hero-content{
+  position:absolute;
+  top:50%;              /* 从页面垂直中点开始 */
+  bottom:64px;          /* 为 SCROLL 提示留出空间 */
+  left:0;right:0;
+  z-index:2;
+  display:flex;
+  align-items:center;   /* 在下半区域垂直居中 */
+  justify-content:center;
+  flex-direction:column;
+  text-align:center;
+  padding:0 24px;
+}
+
+.hero-slogan{text-align:center}
+.hero-slogan-line1,
+.hero-slogan-line2{
+  font-weight:400;color:var(--c-gold);line-height:1.6;
+  letter-spacing:.06em;
+  font-size:clamp(38px,5.5vw,78px);
+  opacity:0;animation:fadeUp 1.2s var(--ease) forwards;
+}
+.hero-slogan-line1{animation-delay:.6s;margin-bottom:8px}
+.hero-slogan-line2{animation-delay:.85s}
+@media(max-width:768px){
+  .hero-slogan-line1,.hero-slogan-line2{font-size:clamp(32px,8vw,56px)}
+  .hero-content{bottom:56px}   /* 移动端 SCROLL 提示稍近 */
+}
+
+/* SCROLL 提示：始终钉在底部中央 */
+.scroll-hint{
+  position:absolute;
+  bottom:20px;
+  left:0; right:0;               /* 撑满宽度 */
+  margin:0 auto;                 /* 不依赖 transform 居中 */
+  width:max-content;             /* 收缩至内容宽 */
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  opacity:0;animation:fadeUp .8s var(--ease) 1.8s both;
+  cursor:pointer;z-index:2;
+  white-space:nowrap;
+}
+.scroll-hint span{font-size:11px;color:var(--c-grey-d);letter-spacing:.2em;font-family:var(--font-en)}
+.arrow-down{
+  width:20px;height:20px;border-right:1px solid var(--c-gold-d);
+  border-bottom:1px solid var(--c-gold-d);
+  transform:rotate(45deg);
+  animation:arrowBounce 1.6s ease-in-out infinite;
+}
+@keyframes arrowBounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(5px)}}
+
+/* 保留旧 hero 辅助类（兼容性） */
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:6px 18px;border:1px solid var(--c-border-h);
+  border-radius:100px;margin-bottom:36px;
+  animation:fadeUp .8s var(--ease) .3s both;
+}
+.hero-badge-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--c-gold);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+.hero-badge span{font-size:12px;color:var(--c-gold);letter-spacing:.2em;font-family:var(--font-en)}
+.hero-line1,.hero-line2{
+  font-weight:400;color:var(--c-gold);line-height:1.55;
+  letter-spacing:.06em;opacity:0;
+  font-size:clamp(38px,5.5vw,78px);
+}
+.hero-line1{animation:fadeUp 1s var(--ease) .6s both}
+.hero-line2{animation:fadeUp 1s var(--ease) .85s both;margin-bottom:28px}
+.hero-divider{
+  display:flex;align-items:center;gap:16px;
+  justify-content:center;margin-bottom:28px;
+  opacity:0;animation:fadeUp .8s var(--ease) 1.1s both;
+}
+.hero-divider::before,.hero-divider::after{
+  content:'';flex:1;max-width:80px;height:1px;
+  background:var(--c-border-h);
+}
+.hero-divider span{font-size:12px;color:var(--c-grey-d);letter-spacing:.2em;font-family:var(--font-en)}
+.hero-cta{
+  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .8s var(--ease) 1.3s both;
+}
+.btn-gold{
+  padding:13px 36px;background:var(--c-gold);color:var(--c-forest);
+  font-size:14px;font-weight:700;letter-spacing:.08em;
+  transition:all .3s var(--ease);border-radius:2px;
+  clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px));
+}
+.btn-gold:hover{background:var(--c-gold-l);transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,168,75,.35)}
+.btn-outline{
+  padding:13px 36px;border:1px solid var(--c-border-h);color:var(--c-gold);
+  font-size:14px;letter-spacing:.08em;transition:all .3s var(--ease);border-radius:2px;
+}
+.btn-outline:hover{border-color:var(--c-gold);background:rgba(200,168,75,.08);transform:translateY(-2px)}
+
+/* ═══════════════════════════════════════════════════════
+   SHARED SECTION LAYOUT
+═══════════════════════════════════════════════════════ */
+.sec-inner{
+  width:100%;max-width:1200px;
+  padding:calc(var(--nav-h) + 24px) 48px 32px;
+  margin:0 auto;
+  display:flex;flex-direction:column;justify-content:center;
+  height:100%;
+  overflow:hidden;
+  max-height:100dvh;
+}
+.sec-label{
+  font-size:11px;font-family:var(--font-en);
+  color:var(--c-gold);letter-spacing:.25em;
+  text-transform:uppercase;display:block;margin-bottom:8px;
+}
+.sec-title{
+  font-size:clamp(24px,3.2vw,40px);font-weight:700;
+  color:var(--c-white);line-height:1.3;margin-bottom:6px;
+}
+.sec-sub{font-size:14px;color:var(--c-grey);letter-spacing:.04em;margin-bottom:28px}
+.sec-divider{
+  width:40px;height:2px;background:var(--c-gold);
+  margin-bottom:32px;
+  transition:width .6s var(--ease);
+}
+
+/* 进入动效 */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-l{opacity:0;transform:translateX(-24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal-l.visible{opacity:1;transform:none}
+
+/* ═══════════════════════════════════════════════════════
+   SERVICES — 3列矩阵
+═══════════════════════════════════════════════════════ */
+.services-page{background:var(--c-bg)}
+#svc-bg-layer{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;background-size:cover;background-position:center;filter:grayscale(100%) brightness(12%) blur(12px);transition:opacity 1.4s ease}
+.svc-grid-wrap{position:relative;z-index:1;width:100%;height:100%;padding:var(--nav-h) 0 0;display:flex}
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);width:100%;flex:1;border-top:1px solid rgba(200,168,75,.1);min-height:0}
+.svc-card{display:flex;flex-direction:column;border-right:1px solid rgba(200,168,75,.1);background:rgba(0,18,8,.5);position:relative;min-height:0;overflow:hidden;transition:background .4s}
+.svc-card:last-child{border-right:none}
+.svc-card:hover{background:rgba(0,30,14,.75)}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--c-gold),transparent);opacity:0;transition:opacity .45s;z-index:2}
+.svc-card:hover::before{opacity:1}
+.svc-img{width:100%;height:34%;overflow:hidden;flex-shrink:0;position:relative}
+.svc-img::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 20%,rgba(0,18,8,.92))}
+.svc-img img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.12) brightness(.42);transition:transform 1.1s cubic-bezier(.16,1,.3,1),filter 1.1s}
+.svc-card:hover .svc-img img{transform:scale(1.07);filter:saturate(.6) brightness(.55)}
+.svc-body{padding:20px 24px 24px;display:flex;flex-direction:column;flex:1;overflow:hidden}
+.svc-header{margin-bottom:14px}
+.svc-num{display:block;font-size:10px;letter-spacing:.45em;color:rgba(200,168,75,.3);margin-bottom:5px}
+.svc-title-cn{display:block;font-size:22px;font-weight:700;color:var(--c-gold);letter-spacing:.06em;line-height:1.2}
+.svc-title-en{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(200,168,75,.4);margin-top:5px}
+.svc-divider{width:30px;height:1px;background:rgba(200,168,75,.35);margin:0 0 16px;flex-shrink:0;transition:width .5s var(--ease)}
+.svc-card:hover .svc-divider{width:52px}
+.svc-group{margin-bottom:16px}
+.svc-group:last-child{margin-bottom:0}
+.svc-group-label{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(200,168,75,.55);margin-bottom:8px}
+.svc-items{display:flex;flex-direction:column;gap:5px}
+.svc-items li{font-size:13px;color:rgba(255,255,255,.65);padding:5px 0 5px 13px;position:relative;line-height:1.5;border-left:1px solid rgba(200,168,75,.15);transition:border-color .25s,color .25s,padding-left .2s}
+.svc-card:hover .svc-items li:hover{border-left-color:var(--c-gold);color:#fff;padding-left:20px}
+.svc-item-en{display:block;font-size:9px;letter-spacing:.15em;color:rgba(200,168,75,.28);text-transform:uppercase;margin-top:2px}
+@media(max-width:1024px){.svc-body{padding:16px 18px 18px}.svc-title-cn{font-size:19px}}
+@media(max-width:768px){
+  .svc-grid-wrap{padding-top:var(--nav-h);overflow-y:scroll;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .svc-grid-wrap::-webkit-scrollbar{display:none}
+  .services-grid{grid-template-columns:1fr;height:auto}
+  .svc-card{border-right:none;border-bottom:1px solid rgba(200,168,75,.1)}
+  .svc-card:last-child{border-bottom:none}
+  .svc-img{height:160px}.svc-body{padding:14px 16px 16px}.svc-title-cn{font-size:18px}
+}
+@media(max-height:700px) and (min-width:769px){
+  .svc-img{height:28%}.svc-body{padding:14px 20px}.svc-title-cn{font-size:18px}.svc-group{margin-bottom:10px}
+}
+
+/* ═══════════════════════════════════════════════════════
+   CASES — 全屏轮播
+═══════════════════════════════════════════════════════ */
+.cases-page{
+  background:var(--c-bg);
+  /* Deep radial glow for depth */
+  background-image:radial-gradient(ellipse 80% 60% at 50% 50%, rgba(0,80,30,.35) 0%, transparent 70%);
+}
+#cas-bg-layer{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  opacity:0;background-size:cover;background-position:center;
+  /* 悬停时：轻微模糊 + 可见亮度，保留图片氛围 */
+  filter:blur(10px) brightness(0.38) saturate(1.3);
+  transition:opacity .6s ease, filter .6s ease;
+}
+/* 悬停激活态：进一步提升清晰度 */
+#cas-bg-layer.hovered{
+  filter:blur(6px) brightness(0.5) saturate(1.5);
+}
+/* Vignette overlay — darkens corners for depth */
+.cases-page::after{
+  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 75% 55% at 50% 50%, transparent 40%, rgba(0,10,4,.65) 100%);
+}
+.cas-carousel-wrap{
+  position:relative;z-index:1;
+  width:100%;height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding-top:var(--nav-h);
+  overflow:hidden;
+}
+.cases-track{
+  display:flex;
+  width:100%;
+  flex:none;  /* don't stretch — let the slide control height */
+  transition:transform 0.65s cubic-bezier(0.77,0,0.175,1);
+  will-change:transform;
+}
+.case-slide{
+  flex:0 0 100%;width:100%;
+  display:flex;align-items:center;justify-content:center;
+  padding:0 80px calc(var(--footer-h) + 8px);
+  box-sizing:border-box;
+}
+/* Card */
+.case-inner{
+  display:flex;
+  width:100%;max-width:960px;
+  height:420px;
+  border:1px solid rgba(200,168,75,.2);
+  background:rgba(0,14,6,.75);
+  position:relative;overflow:hidden;
+  transition:border-color .4s;
+  box-shadow:0 24px 80px rgba(0,0,0,.55), 0 0 0 1px rgba(200,168,75,.08);
+}
+.case-inner::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--c-gold),transparent);
+  opacity:0;transition:opacity .45s;z-index:2;
+}
+.case-slide:hover .case-inner{border-color:rgba(200,168,75,.45)}
+.case-slide:hover .case-inner::before{opacity:1}
+/* Image left */
+.case-img{width:46%;flex-shrink:0;position:relative;overflow:hidden}
+.case-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to right,transparent 50%,rgba(0,14,6,.98));
+}
+.case-img img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:saturate(.2) brightness(.5);
+  transition:transform 1.2s cubic-bezier(.16,1,.3,1),filter 1.2s;
+}
+.case-slide:hover .case-img img{transform:scale(1.05);filter:saturate(.7) brightness(.6)}
+/* Text right — vertically centered */
+.case-body{
+  flex:1;display:flex;flex-direction:column;justify-content:center;
+  padding:36px 44px;overflow:hidden;
+}
+.case-cat{
+  display:block;font-size:9px;letter-spacing:.38em;text-transform:uppercase;
+  color:rgba(200,168,75,.55);margin-bottom:14px;
+}
+.case-title-cn{
+  display:block;font-size:24px;font-weight:700;
+  color:var(--c-gold);letter-spacing:.05em;line-height:1.2;
+}
+.case-title-en{
+  display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(200,168,75,.38);margin-top:6px;
+}
+.case-divider{
+  width:32px;height:1px;background:rgba(200,168,75,.4);
+  margin:18px 0;flex-shrink:0;
+  transition:width .5s var(--ease);
+}
+.case-slide:hover .case-divider{width:60px}
+.case-desc{
+  font-size:14px;color:rgba(255,255,255,.6);line-height:1.9;
+}
+/* Arrows */
+.cas-btn{
+  position:absolute;top:50%;transform:translateY(-50%);z-index:10;
+  width:46px;height:46px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(200,168,75,.28);border-radius:50%;
+  background:rgba(0,12,5,.7);color:var(--c-gold);font-size:18px;
+  transition:all .25s;cursor:pointer;backdrop-filter:blur(10px);
+  -webkit-tap-highlight-color:transparent;
+  user-select:none;-webkit-user-select:none;
+}
+.cas-btn:hover{background:var(--c-gold);color:var(--c-bg);border-color:var(--c-gold)}
+.cas-btn-prev{left:24px}
+.cas-btn-next{right:24px}
+.cas-btn:disabled{opacity:0;pointer-events:none}
+/* Dots */
+.cas-dots{
+  position:absolute;bottom:calc(var(--footer-h) + 14px);
+  left:50%;transform:translateX(-50%);
+  display:flex;gap:10px;z-index:10;
+}
+.cas-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(200,168,75,.22);
+  border:1px solid rgba(200,168,75,.3);
+  transition:background .3s,transform .3s,border-color .3s;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+.cas-dot.active{background:var(--c-gold);border-color:var(--c-gold);transform:scale(1.35)}
+/* Counter */
+.cas-counter{
+  position:absolute;top:calc(var(--nav-h) + 14px);right:28px;
+  font-size:10px;letter-spacing:.35em;color:rgba(200,168,75,.3);z-index:10;
+}
+/* Responsive */
+@media(max-width:1100px){
+  .case-slide{padding:0 48px calc(var(--footer-h) + 8px)}
+  .case-inner{height:380px}
+  .case-body{padding:28px 36px}
+  .case-title-cn{font-size:21px}
+}
+@media(max-width:900px){
+  .case-inner{flex-direction:column;height:auto;max-width:520px}
+  .case-img{width:100%;height:220px}
+  .case-img::after{background:linear-gradient(to bottom,transparent 50%,rgba(0,14,6,.98))}
+  .case-body{padding:24px 28px;justify-content:flex-start}
+  .case-title-cn{font-size:18px}.case-desc{font-size:13px}
+  .case-slide{padding:16px 20px calc(var(--footer-h) + 14px)}
+  .cas-btn{width:38px;height:38px;font-size:15px}
+  .cas-btn-prev{left:6px}.cas-btn-next{right:6px}
+}
+@media(max-width:600px){
+  .case-img{height:170px}.case-body{padding:18px 20px}
+  .case-title-cn{font-size:16px}.case-desc{font-size:12.5px;line-height:1.75}
+  .cas-btn{display:none}.case-slide{padding:12px 14px calc(var(--footer-h) + 12px)}
+}
+@media(max-height:680px) and (min-width:769px){
+  .case-inner{height:340px}.case-body{padding:24px 32px}
+  .case-title-cn{font-size:20px}.case-desc{font-size:13px;line-height:1.7}
+  .case-divider{margin:12px 0}
+}
+
+/* ═══════════════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════════════ */
+.contact-page{background:var(--c-bg);position:relative;overflow:hidden}
+.contact-page .sec-inner{padding-bottom:calc(var(--footer-h) + 16px)}
+.contact-page::before{
+  content:'';position:absolute;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(200,168,75,.05) 0%,transparent 70%);
+  top:-100px;right:-100px;pointer-events:none;
+}
+.contact-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:64px;align-items:center;flex:1;
+}
+.contact-title{font-size:clamp(28px,3.5vw,44px);font-weight:700;color:var(--c-white);margin-bottom:8px}
+.contact-en{font-size:clamp(32px,4vw,52px);font-style:italic;color:var(--c-gold);font-weight:300;display:block;margin-bottom:24px;line-height:1;font-family:var(--font-en)}
+.contact-desc{font-size:14px;color:var(--c-grey);line-height:2;margin-bottom:32px}
+.contact-info{display:flex;flex-direction:column;gap:16px}
+.ci{display:flex;align-items:center;gap:14px}
+.ci-icon{width:38px;height:38px;border:1px solid var(--c-border);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;border-radius:4px}
+.ci-label{font-size:10px;color:var(--c-gold);letter-spacing:.1em;margin-bottom:2px}
+.ci-val{font-size:14px;color:var(--c-grey)}
+.ci-trigger{cursor:pointer;color:var(--c-gold)!important;transition:opacity .2s}
+.ci-trigger:hover{opacity:.75}
+/* Form */
+.form-wrap{background:rgba(0,102,51,.3);border:1px solid var(--c-border);padding:36px;border-radius:4px}
+.form-title{font-size:18px;font-weight:600;color:var(--c-white);margin-bottom:24px;letter-spacing:.04em}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:11px;color:var(--c-gold);letter-spacing:.12em;margin-bottom:7px}
+.fg input,.fg textarea{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);padding:11px 14px;color:var(--c-white);font-size:14px;font-family:var(--font-cn);border-radius:2px;transition:border-color .25s;outline:none}
+.fg input:focus,.fg textarea:focus{border-color:rgba(200,168,75,.5)}
+.fg textarea{resize:vertical;min-height:88px}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,.3);font-size:13px}
+.btn-submit{width:100%;padding:13px;background:var(--c-gold);color:var(--c-forest);font-size:15px;font-weight:700;letter-spacing:.08em;font-family:var(--font-cn);border-radius:2px;transition:all .3s var(--ease);margin-top:4px}
+.btn-submit:hover{background:var(--c-gold-l);transform:translateY(-1px);box-shadow:0 6px 20px rgba(200,168,75,.35)}
+.form-success,.form-error{display:none;text-align:center;padding:24px 0;font-size:14px;line-height:2}
+.form-success{color:rgba(255,255,255,.8)}
+.form-error{color:#ff6b6b}
+.form-success .ok-icon{font-size:32px;margin-bottom:8px}
+.form-success .ok-title{color:var(--c-gold);font-size:17px;margin-bottom:6px}
+/* Wechat modal */
+.wechat-modal{
+  display:none;
+  position:fixed;          /* 固定在视口，不随页面滚动 */
+  top:0;left:0;right:0;bottom:0;
+  width:100vw;height:100vh;
+  background:rgba(0,0,0,.78);
+  z-index:99999;           /* 确保在所有元素之上 */
+  align-items:center;
+  justify-content:center;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+.wechat-modal.open{display:flex}
+.wechat-box{background:#002614;border:1px solid rgba(200,168,75,.45);border-radius:14px;padding:44px 40px 32px;text-align:center;max-width:340px;width:92%;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.6),0 0 0 1px rgba(200,168,75,.12);animation:scaleIn .28s cubic-bezier(0.16,1,0.3,1)}
+@keyframes scaleIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+.wechat-close{position:absolute;top:0;right:0;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(200,168,75,.12);border:none;border-radius:0 14px 0 8px;color:var(--c-gold);font-size:18px;line-height:1;cursor:pointer;transition:background .2s,color .2s}
+.wechat-close:hover{background:var(--c-gold);color:#002614}
+.wechat-label{font-size:12px;color:var(--c-gold);letter-spacing:.2em;text-transform:uppercase;margin-bottom:20px}
+.wechat-qr{width:220px;height:220px;margin:0 auto 16px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:10px;box-shadow:0 4px 24px rgba(0,0,0,.35)}
+.wechat-hint{font-size:12px;color:rgba(255,255,255,.45);margin-bottom:4px}
+.wechat-co{font-size:11px;color:rgba(255,255,255,.2)}
+/* Footer */
+footer{position:absolute;bottom:0;left:0;right:0;padding:0 32px;height:var(--footer-h);display:flex;align-items:center;justify-content:center;gap:10px;border-top:1px solid rgba(200,168,75,.08);background:rgba(0,20,10,.6)}
+.footer-logo-inline{width:22px;height:22px;object-fit:contain;display:block;flex-shrink:0}
+.footer-motto{font-size:12px;color:var(--c-gold);letter-spacing:.12em;font-family:var(--font-cn)}
+.footer-sep{font-size:11px;color:rgba(200,168,75,.35)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.35);letter-spacing:.03em}
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+/* Responsive */
+@media(max-width:1024px){
+  nav{padding:0 28px}.sec-inner{padding:calc(var(--nav-h) + 16px) 28px 24px}
+  .services-grid{grid-template-columns:repeat(2,1fr)}.contact-inner{gap:36px}footer{padding:0 28px}
+}
+@media(max-width:768px){
+  :root{--nav-h:60px;--footer-h:56px}
+  nav{padding:0 18px}.nav-links{display:none}.hamburger{display:flex}
+  .sec-inner{padding:calc(var(--nav-h) + 10px) 16px 14px}
+  .hero-line1,.hero-line2{font-size:clamp(30px,8vw,52px)}
+  .hero-cta{flex-direction:column;align-items:stretch;max-width:280px;margin:0 auto}
+  .contact-inner{grid-template-columns:1fr;gap:14px}
+  .contact-page .sec-inner{overflow-y:scroll;-webkit-overflow-scrolling:touch;scrollbar-width:none;max-height:calc(100dvh - var(--nav-h) - var(--footer-h));justify-content:flex-start;padding-top:calc(var(--nav-h) + 10px);padding-bottom:0}
+  .contact-page .sec-inner::-webkit-scrollbar{display:none}
+  .contact-title{font-size:20px;margin-bottom:4px}.contact-en{font-size:22px;margin-bottom:10px}
+  .contact-desc{display:none}
+  .contact-info{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:0}
+  .ci{gap:8px}.ci-icon{width:28px;height:28px;font-size:13px;border-radius:3px}
+  .ci-label{font-size:8.5px;margin-bottom:1px}.ci-val{font-size:11.5px}
+  .form-wrap{padding:12px 12px 14px;border-radius:4px}.form-title{font-size:13px;margin-bottom:10px}
+  .fg{margin-bottom:8px}.fg label{font-size:9.5px;margin-bottom:3px}
+  .fg input,.fg textarea{padding:8px 10px;font-size:14px}.fg textarea{min-height:52px}
+  .btn-submit{padding:10px;font-size:14px;margin-top:2px}
+  footer{flex-wrap:wrap;gap:4px;padding:6px 14px;height:auto;min-height:var(--footer-h)}
+  .footer-motto{font-size:10px;letter-spacing:.06em}.footer-copy{font-size:9px}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media print{html,body{overflow:auto;height:auto}.page{height:auto;page-break-after:always}nav,#progress-bar,.hamburger,.mobile-overlay{display:none!important}}
+html,body{overflow:hidden!important;height:100%!important;overscroll-behavior:none;touch-action:none}
+.page{height:100dvh;height:-webkit-fill-available;min-height:0!important;max-height:100dvh;overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+#heroCanvas{position:absolute;inset:0;width:100%!important;height:100%!important}
+@supports(padding-top:env(safe-area-inset-top)){
+  nav{padding-top:env(safe-area-inset-top);height:calc(var(--nav-h) + env(safe-area-inset-top))}
+  .contact-page footer{height:calc(var(--footer-h) + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom)}
+}
+@media(max-height:500px) and (orientation:landscape){
+  :root{--nav-h:48px}
+  .sec-inner{padding-top:calc(var(--nav-h) + 8px);padding-bottom:8px}
+  .hero-slogan-line1,.hero-slogan-line2{font-size:clamp(22px,4vh,42px)}
+  footer{height:44px;padding:0 16px}
+}
+@media(max-width:480px){.contact-en{font-size:18px}}
+/* Cursor */
+html,body,*{cursor:default;user-select:none;-webkit-user-select:none}
+a,button,[role="button"],[tabindex="0"],.scroll-hint,.ci-trigger,.nav-links a,.nav-report,.hamburger,.btn-submit,.svc-card,.wechat-close,.cas-btn,.cas-dot,label[for]{cursor:pointer}
+input,textarea,select{cursor:text;user-select:text;-webkit-user-select:text}
+
+</style>
+
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9FPCQK3QVC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9FPCQK3QVC');
+</script>
+</head><body>
+
+<!-- ══ 进度条 ══ -->
+<div id="progress-bar" aria-hidden="true"></div>
+
+<!-- ══ NAV ══ -->
+<nav id="main-nav" role="navigation" aria-label="主导航">
+  <a href="#hero" class="nav-logo" aria-label="WALDORF 首页">
+    <img class="nav-logo-icon" src="assets/img/LOGO.png" alt="WALDORF Logo">
+    <div class="nav-logo-text">
+      <span class="nav-logo-cn">上海卫道夫投资管理有限公司</span>
+    </div>
+  </a>
+  <ul class="nav-links" role="list">
+    <li><a href="#hero" data-page="0">首页</a></li>
+    <li><a href="#services" data-page="1">服务矩阵</a></li>
+    <li><a href="#cases" data-page="2">项目案例</a></li>
+    <li><a href="#contact" data-page="3">联系我们</a></li>
+    <li><a href="report-center.html" class="nav-report">报告中心</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="打开菜单" aria-expanded="false" aria-controls="mobile-overlay">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══ 移动端菜单 ══ -->
+<div class="mobile-overlay" id="mobile-overlay" role="dialog" aria-label="导航菜单" aria-modal="true">
+  <ul role="list">
+    <li><a href="#hero" data-page="0">首页</a></li>
+    <li><a href="#services" data-page="1">服务矩阵</a></li>
+    <li><a href="#cases" data-page="2">项目案例</a></li>
+    <li><a href="#contact" data-page="3">联系我们</a></li>
+    <li><a href="report-center.html">报告中心</a></li>
+  </ul>
+</div>
+
+<!-- ══ PAGE 0: HERO ══ -->
+<div id="scroll-wrap">
+<section class="page hero" id="hero" aria-label="首屏">
+  <canvas id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="hero-overlay" aria-hidden="true"></div>
+  <div class="hero-content">
+    <div class="hero-slogan">
+      <div class="hero-slogan-line1">聚焦投后管理</div>
+      <div class="hero-slogan-line2">成就伟大投资</div>
+    </div>
+  </div>
+  <div class="scroll-hint" data-next aria-hidden="true">
+    <span>SCROLL</span>
+    <div class="arrow-down"></div>
+  </div>
+</section>
+
+<!-- ══ PAGE 1: SERVICES ══ -->
+<section class="page services-page" id="services" aria-label="服务矩阵">
+  <div id="svc-bg-layer"></div>
+  <div class="svc-grid-wrap">
+    <div class="services-grid reveal">
+
+      <!-- 01 风险管理 -->
+      <div class="svc-card" data-bg="assets/img/svc-01.webp">
+        <div class="svc-img">
+          <img src="assets/img/svc-01.webp" alt="风险管理"
+               onerror="this.src='https://unsplash.com/photos/yellow-cube-with-risk-meter-on-keyboard-sLevDCcgmUI'">
+        </div>
+        <div class="svc-body">
+          <div class="svc-header">
+            <span class="svc-num">01 /</span>
+            <span class="svc-title-cn">风险管理</span>
+            <span class="svc-title-en">Risk Management</span>
+          </div>
+          <div class="svc-divider"></div>
+          <div class="svc-group">
+            <span class="svc-group-label">道德风险 · Moral Hazard</span>
+            <ul class="svc-items">
+              <li>职务侵占<span class="svc-item-en">Embezzlement</span></li>
+              <li>关联交易<span class="svc-item-en">Related Party Transaction</span></li>
+              <li>财务造假<span class="svc-item-en">Financial Fraud</span></li>
+            </ul>
+          </div>
+          <div class="svc-group">
+            <span class="svc-group-label">经营风险 · Operational Risk</span>
+            <ul class="svc-items">
+              <li>决策失误 · 竞争风险<span class="svc-item-en">Decision Error · Competition</span></li>
+              <li>行业变局 · 财税安全<span class="svc-item-en">Industry Disruption · Tax</span></li>
+              <li>重大诉讼<span class="svc-item-en">Major Litigation</span></li>
+            </ul>
+          </div>
+          <div class="svc-group">
+            <span class="svc-group-label">市场与宏观 · Market &amp; Macro</span>
+            <ul class="svc-items">
+              <li>市场结构 · 价格波动<span class="svc-item-en">Market Structure · Volatility</span></li>
+              <li>政策波动 · 经济周期<span class="svc-item-en">Policy Risk · Business Cycle</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 运营秩序 -->
+      <div class="svc-card" data-bg="assets/img/svc-02.webp">
+        <div class="svc-img">
+          <img src="assets/img/svc-02.webp" alt="运营秩序"
+               onerror="this.src='https://unsplash.com/photos/business-professionals-in-a-meeting-around-a-table-5txln04Cx7I'">
+        </div>
+        <div class="svc-body">
+          <div class="svc-header">
+            <span class="svc-num">02 /</span>
+            <span class="svc-title-cn">运营秩序</span>
+            <span class="svc-title-en">Operational Order</span>
+          </div>
+          <div class="svc-divider"></div>
+          <div class="svc-group">
+            <span class="svc-group-label">制度建设 · System Building</span>
+            <ul class="svc-items">
+              <li>规章制度体系 · 流程标准化<span class="svc-item-en">Regulations &amp; Process Standards</span></li>
+              <li>权责管理 · 股东知情权<span class="svc-item-en">Rights &amp; Responsibilities</span></li>
+            </ul>
+          </div>
+          <div class="svc-group">
+            <span class="svc-group-label">权责利体系 · Incentive Structure</span>
+            <ul class="svc-items">
+              <li>激励机制设计 · 利益分配<span class="svc-item-en">Incentive Design &amp; Distribution</span></li>
+              <li>考核体系建立<span class="svc-item-en">Performance Evaluation System</span></li>
+            </ul>
+          </div>
+          <div class="svc-group">
+            <span class="svc-group-label">人事与业务 · People &amp; Operations</span>
+            <ul class="svc-items">
+              <li>管理层评估 · 关键岗位配置<span class="svc-item-en">Management Assessment</span></li>
+              <li>核心业务梳理 · 运营数据监测<span class="svc-item-en">Operations Monitoring</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 收益实现 -->
+      <div class="svc-card" data-bg="assets/img/svc-03.webp">
+        <div class="svc-img">
+          <img src="assets/img/svc-03.webp" alt="收益实现"
+               onerror="this.src='https://unsplash.com/photos/white-and-black-abstract-illustration-PcDGGex9-jA'">
+        </div>
+        <div class="svc-body">
+          <div class="svc-header">
+            <span class="svc-num">03 /</span>
+            <span class="svc-title-cn">收益实现</span>
+            <span class="svc-title-en">Return Realization</span>
+          </div>
+          <div class="svc-divider"></div>
+          <div class="svc-group">
+            <span class="svc-group-label">经营所得 · Operating Income</span>
+            <ul class="svc-items">
+              <li>收入扩大<span class="svc-item-en">Revenue Expansion</span></li>
+              <li>成本降低<span class="svc-item-en">Cost Reduction</span></li>
+              <li>利润增长<span class="svc-item-en">Profit Growth</span></li>
+              <li>业务多元化<span class="svc-item-en">Business Diversification</span></li>
+            </ul>
+          </div>
+          <div class="svc-group">
+            <span class="svc-group-label">资本利得 · Capital Gains</span>
+            <ul class="svc-items">
+              <li>估值增长<span class="svc-item-en">Valuation Growth</span></li>
+              <li>并购重组<span class="svc-item-en">M&amp;A / Restructuring</span></li>
+              <li>资本市场退出<span class="svc-item-en">Capital Market Exit</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ PAGE 2: CASES ══ -->
+<section class="page cases-page" id="cases" aria-label="项目案例">
+  <div id="cas-bg-layer"></div>
+  <div class="cas-carousel-wrap">
+    <div class="cas-counter"><span id="casCur">1</span>&nbsp;/&nbsp;4</div>
+    <div class="cases-track" id="casesTrack">
+
+      <div class="case-slide" data-bg="assets/img/case-02.webp">
+        <div class="case-inner">
+          <div class="case-img"><img src="assets/img/case-02.webp" alt="冷链仓储" onerror="this.src='https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80'"></div>
+          <div class="case-body">
+            <span class="case-cat">Cold Chain · M&amp;A Closing</span>
+            <span class="case-title-cn">冷链仓储 · 产业投资交割</span>
+            <span class="case-title-en">Cold Chain Warehouse — M&amp;A Transaction Closing</span>
+            <div class="case-divider"></div>
+            <p class="case-desc">尽职调查和设置交易结构及关键交易条款，为重大投资推进建立防火墙。专业条款设计有效保护投资方核心利益。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-slide" data-bg="assets/img/case-03.webp">
+        <div class="case-inner">
+          <div class="case-img"><img src="assets/img/case-03.webp" alt="商业地产" onerror="this.src='https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80'"></div>
+          <div class="case-body">
+            <span class="case-cat">Real Estate · Risk Resolution</span>
+            <span class="case-title-cn">商业地产 · 重大风险处置</span>
+            <span class="case-title-en">Commercial Real Estate — Major Risk Resolution</span>
+            <div class="case-divider"></div>
+            <p class="case-desc">解决股东因公司债务连带担保产生的重大债务风险，规范公司治理结构和管理机制，帮助股东成功脱身连带责任。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-slide" data-bg="assets/img/case-04.webp">
+        <div class="case-inner">
+          <div class="case-img"><img src="assets/img/case-04.webp" alt="国际贸易" onerror="this.src='https://images.unsplash.com/photo-1451187530220-4e2a13505ad4?w=800&q=80'"></div>
+          <div class="case-body">
+            <span class="case-cat">International Trade · Process Engineering</span>
+            <span class="case-title-cn">国际贸易 · 组织流程建设</span>
+            <span class="case-title-en">International Trade — Org &amp; Process Engineering</span>
+            <div class="case-divider"></div>
+            <p class="case-desc">混合所有制公司的规划设立和经营计划制定，构建全线管理自动化。引入OA系统和AI技术，大幅提升管理效能。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-slide" data-bg="assets/img/case-01.webp">
+        <div class="case-inner">
+          <div class="case-img"><img src="assets/img/case-01.webp" alt="物流运输" onerror="this.src='https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80'"></div>
+          <div class="case-body">
+            <span class="case-cat">Logistics · Equity Buyback</span>
+            <span class="case-title-cn">物流运输 · 股权回购退出</span>
+            <span class="case-title-en">Logistics Industry — Equity Buyback Exit</span>
+            <div class="case-divider"></div>
+            <p class="case-desc">规范公司会计政策和财务管理秩序，规避重大投资风险，成功行使回购权完成退出。系统性财务梳理，为投资方挽回全部本金并实现合理收益。</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <button class="cas-btn cas-btn-prev" id="casPrev" aria-label="上一个" disabled>&#8592;</button>
+    <button class="cas-btn cas-btn-next" id="casNext" aria-label="下一个">&#8594;</button>
+    <div class="cas-dots">
+      <div class="cas-dot active" data-i="0"></div>
+      <div class="cas-dot" data-i="1"></div>
+      <div class="cas-dot" data-i="2"></div>
+      <div class="cas-dot" data-i="3"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PAGE 3: CONTACT ══ -->
+<section class="page contact-page" id="contact" aria-label="联系我们">
+  <div class="sec-inner">
+    <div class="contact-inner">
+      <div class="reveal-l">
+        <div class="contact-title">开启合作</div>
+        <span class="contact-en">Let's Connect</span>
+        <p class="contact-desc">无论您是机构投资者、产业资本还是个人投资者，卫道夫都愿以专业的投后管理服务，守护和增值您的每一份投资。</p>
+        <div class="contact-info">
+          <div class="ci"><div class="ci-icon" aria-hidden="true">🌐</div><div><div class="ci-label">官方网站</div><div class="ci-val">www.waldorf.work</div></div></div>
+          <div class="ci"><div class="ci-icon" aria-hidden="true">📍</div><div><div class="ci-label">公司地址</div><div class="ci-val">中国 · 上海</div></div></div>
+          <div class="ci"><div class="ci-icon" aria-hidden="true">📧</div><div><div class="ci-label">商务合作</div><div class="ci-val">vip@waldorf.work</div></div></div>
+          <div class="ci"><div class="ci-icon" aria-hidden="true">💬</div><div><div class="ci-label">企业微信</div><div class="ci-val ci-trigger" id="wechat-trigger" role="button" tabindex="0" aria-haspopup="dialog">点击查看企业微信二维码</div></div></div>
+        </div>
+      </div>
+      <div class="form-wrap reveal" style="transition-delay:.2s">
+        <div class="form-title">联系我们</div>
+        <form id="contactForm" novalidate aria-label="咨询表单">
+          <div class="fg"><label for="field_name">您的姓名 <span aria-hidden="true" style="color:#c8a84b">*</span></label><input type="text" id="field_name" name="from_name" placeholder="请输入姓名" required autocomplete="name"></div>
+          <div class="fg"><label for="field_tel">联系电话 <span aria-hidden="true" style="color:#c8a84b">*</span></label><input type="tel" id="field_tel" name="from_phone" placeholder="请输入联系电话" required autocomplete="tel"></div>
+          <div class="fg"><label for="field_co">公司名称</label><input type="text" id="field_co" name="from_company" placeholder="请输入公司名称" autocomplete="organization"></div>
+          <div class="fg"><label for="field_msg">咨询内容</label><textarea id="field_msg" name="message" placeholder="请简述您的投资管理需求…"></textarea></div>
+          <button type="submit" class="btn-submit" id="submitBtn">发送 →</button>
+        </form>
+        <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+          <div class="ok-icon">✓</div>
+          <div class="ok-title">发送成功</div>
+          <div>我们已收到您的咨询，将尽快与您联系</div>
+        </div>
+        <div class="form-error" id="formError" role="alert" aria-live="assertive"></div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <img class="footer-logo-inline" src="assets/img/LOGO.png" alt="WALDORF Logo">
+    <span class="footer-motto">管理向善 科技赋能 治理创造价值</span>
+    <span class="footer-sep">·</span>
+    <span class="footer-copy">© 2026 上海卫道夫投资管理有限公司</span>
+  </footer>
+</section>
+
+
+
+
+
+
+<!-- ══ SCRIPTS ══ -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="assets/js/hero-canvas.js" defer></script>
+<script src="assets/js/scroll-engine.js" defer></script>
+<script src="assets/js/ui.js" defer></script>
+<script src="assets/js/emailjs-form.js" defer></script>
+
+<!-- Services BG hover -->
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var g=document.querySelector('.services-grid'),l=document.getElementById('svc-bg-layer');
+  if(g&&l){g.querySelectorAll('[data-bg]').forEach(function(c){
+    c.addEventListener('mouseenter',function(){l.style.backgroundImage="url('"+c.dataset.bg+"')";l.style.opacity='1';});
+    c.addEventListener('mouseleave',function(){l.style.opacity='0';});
+  });}
+});
+</script>
+
+<!-- Cases carousel -->
+<script>
+(function(){
+  'use strict';
+  var track=document.getElementById('casesTrack');
+  var bg=document.getElementById('cas-bg-layer');
+  var prev=document.getElementById('casPrev');
+  var next=document.getElementById('casNext');
+  var dots=Array.from(document.querySelectorAll('.cas-dot'));
+  var ctr=document.getElementById('casCur');
+  var slides=track?Array.from(track.querySelectorAll('.case-slide')):[];
+  var n=slides.length,cur=0;
+  if(!track||n===0)return;
+
+  function goTo(i,instant){
+    cur=Math.max(0,Math.min(i,n-1));
+    track.style.transition=instant?'none':'transform 0.65s cubic-bezier(0.77,0,0.175,1)';
+    track.style.transform='translateX(-'+(cur*100)+'%)';
+    var b=slides[cur].dataset.bg;
+    if(b&&bg){bg.style.backgroundImage="url('"+b+"')";bg.style.opacity='1';}
+    dots.forEach(function(d,j){d.classList.toggle('active',j===cur);});
+    if(ctr)ctr.textContent=cur+1;
+    if(prev)prev.disabled=(cur===0);
+    if(next)next.disabled=(cur===n-1);
+  }
+  goTo(0,true);
+
+  /* 悬停卡片时背景更清晰 */
+  slides.forEach(function(s){
+    s.addEventListener('mouseenter',function(){
+      if(bg){bg.classList.add('hovered');}
+    });
+    s.addEventListener('mouseleave',function(){
+      if(bg){bg.classList.remove('hovered');}
+    });
+  });
+
+  window._casHorizontal=false;
+
+  if(prev)prev.addEventListener('click',function(){goTo(cur-1);});
+  if(next)next.addEventListener('click',function(){goTo(cur+1);});
+  dots.forEach(function(d){d.addEventListener('click',function(){goTo(+d.dataset.i);});});
+
+  /* Touch — attached to section for reliable iOS capture */
+  var sec=document.getElementById('cases');
+  var tx=0,ty=0,tt=0,act=false;
+  sec.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;ty=e.touches[0].clientY;tt=Date.now();act=true;window._casHorizontal=false;},{passive:true});
+  sec.addEventListener('touchmove',function(e){
+    if(!act)return;
+    var dx=Math.abs(e.touches[0].clientX-tx),dy=Math.abs(e.touches[0].clientY-ty);
+    if(dx>dy&&dx>8)window._casHorizontal=true;
+  },{passive:true});
+  sec.addEventListener('touchend',function(e){
+    if(!act)return;act=false;
+    var wasH=window._casHorizontal;
+    setTimeout(function(){window._casHorizontal=false;},50);
+    var dx=tx-e.changedTouches[0].clientX,dy=ty-e.changedTouches[0].clientY,dt=Date.now()-tt;
+    if(!wasH)return;
+    if(Math.abs(dx)<Math.abs(dy)*0.8)return;
+    if(Math.abs(dx)<28&&dt>400)return;
+    if(dx>0){if(cur<n-1)goTo(cur+1);else if(window._scrollGoTo)window._scrollGoTo(3);}
+    else    {if(cur>0)  goTo(cur-1);else if(window._scrollGoTo)window._scrollGoTo(1);}
+  },{passive:true});
+
+  /* Mouse drag */
+  var mx=0,md=false;
+  track.addEventListener('mousedown',function(e){mx=e.clientX;md=true;e.preventDefault();});
+  window.addEventListener('mouseup',function(e){
+    if(!md)return;md=false;
+    if(Math.abs(mx-e.clientX)<36)return;
+    goTo(mx-e.clientX>0?cur+1:cur-1);
+  });
+
+  /* Keyboard */
+  document.addEventListener('keydown',function(e){
+    if(!sec.classList.contains('is-active'))return;
+    if(e.key==='ArrowLeft')goTo(cur-1);
+    if(e.key==='ArrowRight')goTo(cur+1);
+  });
+
+  if(window.IntersectionObserver){
+    new IntersectionObserver(function(entries){
+      entries.forEach(function(e){sec.classList.toggle('is-active',e.isIntersecting);});
+    },{threshold:0.5}).observe(sec);
+  }
+})();
+</script>
+
+<!-- ══ 企业微信弹窗 — body 直属，不受 scroll-wrap transform 影响 ══ -->
+<div id="wechat-modal" style="
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  background:rgba(0,0,0,.82);
+  z-index:2147483647;
+  align-items:center;
+  justify-content:center;
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+" role="dialog" aria-modal="true" aria-label="企业微信二维码">
+  <div style="
+    background:#002614;
+    border:1px solid rgba(200,168,75,.45);
+    border-radius:14px;
+    padding:48px 40px 32px;
+    text-align:center;
+    max-width:320px;
+    width:88%;
+    position:relative;
+    box-shadow:0 40px 100px rgba(0,0,0,.7),0 0 0 1px rgba(200,168,75,.12);
+    animation:wqScaleIn .25s cubic-bezier(0.16,1,0.3,1);
+  ">
+    <button id="wechat-close" aria-label="关闭" style="
+      position:absolute;top:0;right:0;
+      width:44px;height:44px;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(200,168,75,.15);
+      border:none;border-radius:0 14px 0 8px;
+      color:#c8a84b;font-size:20px;
+      cursor:pointer;transition:background .2s,color .2s;
+    " onmouseover="this.style.background='#c8a84b';this.style.color='#002614'"
+       onmouseout="this.style.background='rgba(200,168,75,.15)';this.style.color='#c8a84b'">✕</button>
+    <div style="font-size:11px;color:#c8a84b;letter-spacing:.22em;text-transform:uppercase;margin-bottom:20px;">企业微信</div>
+    <div style="width:220px;height:220px;margin:0 auto 16px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;padding:10px;box-shadow:0 4px 24px rgba(0,0,0,.4);">
+      <img src="assets/img/wechat-qr.JPG" style="width:100%;height:100%;object-fit:contain;display:block;" alt="企业微信二维码">
+    </div>
+    <div style="font-size:12px;color:rgba(255,255,255,.45);margin-bottom:4px;">扫码添加企业微信</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.2);">上海卫道夫投资管理有限公司</div>
+  </div>
+</div>
+<style>
+@keyframes wqScaleIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
+</style>
+
+<script>
+(function(){
+  var modal = document.getElementById('wechat-modal');
+  var close = document.getElementById('wechat-close');
+
+  // 确保 modal 是 body 直属子元素（移出任何 transform 容器）
+  if(modal && modal.parentElement !== document.body){
+    document.body.appendChild(modal);
+  }
+
+  function openW(){
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeW(){
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  // 绑定触发器（延迟绑定确保 DOM 就绪）
+  document.addEventListener('DOMContentLoaded', function(){
+    var trigger = document.getElementById('wechat-trigger');
+    if(trigger){
+      trigger.addEventListener('click', openW);
+      trigger.addEventListener('keydown', function(e){
+        if(e.key==='Enter'||e.key===' '){ e.preventDefault(); openW(); }
+      });
+    }
+  });
+
+  if(close){
+    close.addEventListener('click', closeW);
+  }
+  modal.addEventListener('click', function(e){
+    if(e.target === modal) closeW();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape') closeW();
+  });
+})();
+</script>
+
+</body>
+</html>
